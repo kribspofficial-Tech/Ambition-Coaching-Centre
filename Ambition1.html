@@ -1,0 +1,2911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ambition Coaching Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+/* =========================================================
+   CSS START — Ambition Coaching Centre
+   ========================================================= */
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box
+}
+html {
+    scroll-behavior:smooth
+}
+body {
+    font-family:Arial,Helvetica,sans-serif;
+    color:#172033;
+    background:#fff;
+    line-height:1.6
+}
+a {
+    text-decoration:none;
+    color:inherit
+}
+button {
+    font-family:inherit
+}
+.container {
+    width:90%;
+    max-width:1150px;
+    margin:auto
+}
+section {
+    scroll-margin-top:80px
+}
+.logo {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:22px;
+    font-weight:800
+}
+.logo img {
+    width:230px;
+    height:auto;
+    object-fit:contain
+}
+.logo span {
+    color:#4169e1
+}
+.header {
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#fff;
+    box-shadow:0 3px 20px rgba(0,0,0,.08)
+}
+.nav {
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between
+}
+nav {
+    display:flex;
+    gap:22px
+}
+nav a {
+    font-size:14px;
+    font-weight:600
+}
+nav a:hover {
+    color:#4169e1
+}
+.nav-btn {
+    background:#4169e1;
+    color:#fff;
+    padding:11px 20px;
+    border-radius:8px;
+    font-weight:700
+}
+.menu-btn {
+    display:none;
+    border:0;
+    background:none;
+    font-size:24px
+}
+.hero {
+    background:linear-gradient(135deg,#f2f5ff,#fff);
+    padding:90px 0
+}
+.hero-content {
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:60px;
+    align-items:center
+}
+.tag,.section-tag {
+    display:inline-block;
+    color:#4169e1;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:1px
+}
+.section-tag {
+    background:transparent;
+}
+
+/* Blue pill border only around the requested section labels */
+#about .section-tag,
+#courses .section-tag,
+#faculty .section-tag,
+#gallery .section-tag,
+#demo .section-tag,
+#contact .section-tag {
+    border:2px solid #4169e1;
+    border-radius:999px;
+    padding:8px 22px;
+    background:#fff;
+}
+.tag {
+    background:#e8edff;
+    padding:8px 14px;
+    border-radius:30px;
+    margin-bottom:18px
+}
+.hero h1 {
+    font-size:clamp(40px,5vw,65px);
+    line-height:1.1;
+    margin-bottom:22px
+}
+.hero h1 span,.section-heading span,.about-content h2 span,.admission h2 span {
+    color:#4169e1
+}
+.hero-text>p {
+    max-width:570px;
+    color:#687386;
+    font-size:17px
+}
+.hero-buttons {
+    display:flex;
+    gap:14px;
+    margin-top:30px
+}
+.btn {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    padding:12px 21px;
+    border-radius:8px;
+    font-weight:700;
+    border:0;
+    cursor:pointer
+}
+.primary {
+    background:#4169e1;
+    color:#fff
+}
+.secondary {
+    border:2px solid #4169e1;
+    color:#4169e1;
+    background:#fff
+}
+.hero-stats {
+    display:flex;
+    gap:40px;
+    margin-top:45px
+}
+.hero-stats div {
+    display:flex;
+    flex-direction:column
+}
+.hero-stats strong {
+    font-size:25px
+}
+.hero-stats small {
+    color:#7b8494
+}
+.hero-card {
+    height:500px;
+    background:linear-gradient(145deg,#4169e1,#718bf0);
+    border-radius:30px;
+    padding:25px;
+    overflow:hidden
+}
+.sir-photo-wrapper {
+    width:100%;
+    height:100%;
+    border-radius:22px;
+    background:#dfe6ff;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center
+}
+.sir-photo {
+    width:90%;
+    height:90%;
+    object-fit:contain;
+    border-radius:15px
+}
+.section {
+    padding:90px 0
+}
+.section-heading {
+    text-align:center;
+    max-width:850px;
+    margin:0 auto 50px;
+    padding:0;
+}
+.about-heading-pill {
+    display:block;
+    text-align:center;
+    margin-bottom:25px;
+}
+.about-heading-pill .section-tag {
+    display:inline-block
+}
+.section-heading h2 {
+    font-size:38px;
+    margin:8px 0 10px
+}
+.section-heading p {
+    color:#737d8d
+}
+.about {
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:70px;
+    align-items:center
+}
+.about-image{
+    height:400px;
+    background:#fff;
+    border-radius:25px;
+    padding:0;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position: relative;
+}
+.about-photo-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding:25px;
+    box-sizing:border-box;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.75) 0%,
+        rgba(0,0,0,.50) 35%,
+        rgba(0,0,0,.15) 65%,
+        rgba(0,0,0,0) 100%
+    );
+    border-radius:25px;
+}
+.digital-title {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 2px solid #6bbcff;
+    border-radius: 12px;
+    box-shadow:
+        0 0 10px rgba(65, 105, 225, 0.8),
+        0 0 18px rgba(65, 105, 225, 0.45);
+}
+
+.digital-title span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    color: #FFD700;
+    text-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+}
+
+.digital-title span{
+    background:linear-gradient(
+        180deg,
+        #fff4a3 0%,
+        #ffd700 35%,
+        #ffd700 35%,
+        #fff0a0 100%
+    );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:30px;
+    font-weight:900;
+    font-style:italic;
+    letter-spacing:1px;
+    white-space:nowrap;
+
+    text-shadow:
+        0 2px 3px rgba(0,0,0,.8),
+        0 0 7px rgba(255,215,0,.35);
+}
+
+.title-leaf{
+    width:90px;
+    height:55px;
+    object-fit:contain;
+    display:block;
+}
+
+.title-leaf.left{
+    transform:scaleX(-1);
+}
+.about-photo-overlay span{
+    color:#fff;
+    font-size:26px;
+    font-weight:800;
+    text-shadow:0 2px 6px rgba(0,0,0,.7);
+}
+.coaching-centre-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+    border-radius:25px;
+    border:3px solid #4169e1;
+}
+.faculty-rating {
+    text-align:center;
+    color:#fff
+}
+.faculty-rating i {
+    font-size:45px
+}
+.stars {
+    color:#ffd700;
+    font-size:20px;
+    letter-spacing:3px
+}
+.about-box {
+    background:#fff;
+    width:75%;
+    margin-top:auto;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.15)
+}
+.about-box i {
+    color:#4169e1;
+    font-size:35px
+}
+.about-box h3 {
+    font-size:28px
+}
+.about-content h2 {
+    font-size:38px;
+    line-height:1.2;
+    margin:10px 0 20px
+}
+.about-content p {
+    color:#687386;
+    margin-bottom:15px
+}
+.features {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+    margin-top:25px
+}
+.features i {
+    color:#4169e1;
+    margin-right:7px
+}
+.courses-section,.admission-section {
+    background:#f7f9ff
+}
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.faculty-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 280px));
+    gap:25px;
+    justify-content:center;
+    width:100%;
+}
+.course-card,.teacher-card {
+    background:#fff;
+    padding:30px;
+    border-radius:18px;
+    border:2px solid #4169e1;
+    box-shadow:0 8px 30px rgba(0,0,0,.06);
+    transition:transform .3s ease, box-shadow .3s ease;
+}
+.teacher-card:hover{
+    transform:scale(1.03);
+    box-shadow:
+        0 0 15px rgba(65,105,225,.25),
+        0 8px 25px rgba(65,105,225,.20);
+}
+.course-card:hover,.teacher-card:hover {
+    transform:translateY(-7px)
+}
+.course-card{
+    padding:0;
+    overflow:hidden;
+}
+
+.course-image{
+    width:100%;
+    height:auto;
+    display:block;
+}
+
+.course-content{
+    padding:25px 30px 30px;
+}
+
+.course-content > span{
+    color:#4169e1;
+    font-size:12px;
+    font-weight:800;
+}
+
+.course-content h3{
+    font-size:23px;
+    margin:7px 0;
+}
+
+.course-content p{
+    color:#747d8d;
+    margin-bottom:20px;
+}
+
+.course-content a{
+    display:inline-block;
+    color:#fff;
+    background:linear-gradient(
+        180deg,
+        #5b7ff0 0%,
+        #4169e1 50%,
+        #3158d4 100%
+    );
+    padding:14px 35px;
+    border:none;
+    border-radius:50px;
+    font-size:16px;
+    font-weight:700;
+    text-decoration:none;
+
+    box-shadow:
+        0 0 0 3px rgba(65,105,225,.10),
+        0 8px 20px rgba(65,105,225,.25),
+        inset 0 2px 6px rgba(255,255,255,.30),
+        inset 0 -5px 10px rgba(0,0,0,.15);
+
+    transition:transform .25s ease;
+}
+.course-icon {
+    width:55px;
+    height:55px;
+    background:#e9edff;
+    color:#4169e1;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    margin-bottom:20px
+}
+.course-card>span {
+    color:#4169e1;
+    font-size:12px;
+    font-weight:800
+}
+.course-card h3 {
+    font-size:23px;
+    margin:7px 0
+}
+.course-card p,.teacher-card p {
+    color:#747d8d;
+    margin-bottom:15px
+}
+.course-card a {
+    color:#4169e1;
+    font-weight:700
+}
+.teacher-card{
+    text-align:center;
+    padding:12px;
+}
+.teacher-card h3{
+    font-size:20px;
+    margin:8px 0 5px;
+}
+
+.teacher-card p{
+    font-size:16px;
+    margin:0 0 10px;
+}
+
+.teacher-card .social{
+    font-size:18px;
+    gap:8px;
+}
+.teacher-photo{
+    width:100%;
+    height:auto;
+    background:transparent;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:12px;
+}
+.teacher-photo img{
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    display:block;
+}
+.social {
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    color:#4169e1
+}
+.results {
+    padding:85px 0;
+    background:linear-gradient(135deg,#172b72,#4169e1);
+    color:#fff
+}
+.results .section-heading h2,.results .section-heading span,.results .section-heading p,.results .section-tag {
+    color:#fff
+}
+.results .section-tag {
+    border:2px solid #fff;
+    border-radius:999px;
+    padding:8px 22px;
+    background:transparent;
+    color:#fff;
+}
+.result-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    max-width:1100px;
+    margin:0 auto;
+    text-align:center;
+}
+
+.result-grid div{
+    padding:10px 6px 12px;
+    background:rgba(255,255,255,.10);
+    border:2px solid #fff;
+    border-radius:12px;
+    min-width:0;
+}
+/* Result Card Hover Effect */
+.result-grid div{
+    transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+    cursor:pointer;
+}
+
+.result-grid div:hover{
+    transform:translateY(-8px) scale(1.03);
+    
+    background:rgba(255,255,255,.16);
+}
+
+.result-grid div img{
+    transition:transform .3s ease, box-shadow .3s ease;
+}
+
+.result-grid div:hover img{
+    transform:scale(1.08);
+    
+}
+.result-grid div img{
+    width:120px !important;
+    height:120px !important;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+    margin:0 auto 8px !important;
+    border:2px solid #fff;
+}
+
+.result-grid h3{
+    margin:3px 0 5px !important;
+    font-size:17px !important;
+    line-height:1.2;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.result-grid strong{
+    display:block;
+    font-size:27px;
+    line-height:1.1;
+    margin:3px 0;
+}
+
+.result-grid span{
+    display:block;
+    color:#dce3ff;
+    font-size:14px;
+    line-height:1.2;
+}
+.whatsapp-btn{
+    width:100%;
+    padding:14px 25px;
+    border:none;
+    border-radius:50px;
+
+    background:linear-gradient(
+        to bottom,
+        #5b8df5 0%,
+        #4169e1 50%,
+        #2854c7 100%
+    ) !important;
+
+    color:#fff !important;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+
+    box-shadow:
+        inset 0 2px 4px rgba(255,255,255,.35),
+        inset 0 -4px 8px rgba(0,0,0,.18),
+        0 5px 12px rgba(65,105,225,.25) !important;
+
+    transition:transform .25s ease !important;
+}
+
+.whatsapp-btn:hover{
+    transform:scale(1.03);
+
+    background:linear-gradient(
+        to bottom,
+        #5b8df5 0%,
+        #4169e1 50%,
+        #2854c7 100%
+    ) !important;
+
+    color:#fff !important;
+
+    box-shadow:
+        inset 0 2px 4px rgba(255,255,255,.35),
+        inset 0 -4px 8px rgba(0,0,0,.18),
+        0 5px 12px rgba(65,105,225,.25) !important;
+}
+
+/* Tablet */
+@media(max-width:900px){
+    .result-grid{
+        grid-template-columns:repeat(4,1fr);
+    }
+}
+
+/* Mobile */
+@media(max-width:600px){
+    .result-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:8px;
+    }
+
+    .result-grid div img{
+        width:100px !important;
+        height:100px !important;
+    }
+
+    .result-grid h3{
+        font-size:15px !important;
+    }
+
+    .result-grid strong{
+        font-size:24px;
+    }
+}
+.gallery-categories{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    width:100%;
+}
+
+.gallery-item{
+    width:100%;
+}
+
+.gallery-cat{
+    width:100%;
+    height:300px;
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    border:2px solid #4169e1;
+    background:#fff;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    transition:.3s ease;
+}
+
+.gallery-cat:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 35px rgba(65,105,225,.20);
+}
+
+.gallery-cat > img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.gallery-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:center;
+    padding:25px;
+    box-sizing:border-box;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.60),
+        rgba(0,0,0,.05)
+    );
+}
+
+.gallery-overlay > span{
+    color:#fff;
+    font-size:24px;
+    font-weight:800;
+    margin-bottom:15px;
+    text-shadow:0 2px 6px rgba(0,0,0,.6);
+}
+
+.gallery-view-btn{
+    width:85%;
+    padding:13px 18px;
+    border:none;
+    border-radius:30px;
+    background:#4169e1;
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s ease;
+}
+
+.gallery-view-btn:hover{
+    background:#3157c7;
+    transform:scale(1.03);
+}
+
+
+/* TABLET */
+@media(max-width:1000px){
+    .gallery-categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+
+/* MOBILE */
+@media(max-width:600px){
+    .gallery-categories{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+
+    .gallery-cat{
+        height:260px;
+        border-radius:18px;
+    }
+
+    .gallery-overlay > span{
+        font-size:22px;
+    }
+
+    .gallery-view-btn{
+        width:80%;
+        font-size:15px;
+        padding:12px 16px;
+    }
+}
+.modal {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.78);
+    z-index:5000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px
+}
+.modal.active {
+    display:flex
+}
+.modal-box {
+    width:min(1050px,100%);
+    max-height:92vh;
+    background:#fff;
+    border-radius:20px;
+    overflow:auto;
+    position:relative;
+    padding:25px
+}
+.modal-head {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #ddd;
+    padding-bottom:15px;
+    margin-bottom:20px
+}
+.close {
+    border:0;
+    background:#f1f3f7;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    font-size:20px;
+    cursor:pointer
+}
+.album-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px
+}
+.event-preview-grid {
+    display:grid; grid-template-columns:repeat(2,1fr); gap:20px
+}
+.event-preview-card {
+    border:2px solid #4169e1; border-radius:16px; background:#f7f9ff; overflow:hidden; box-shadow:0 8px 25px rgba(0,0,0,.06)
+}
+.event-preview-photo {
+    width:100%;
+    height:auto;
+    background:transparent;
+    display:block;
+    overflow:hidden;
+}
+
+.event-preview-photo img {
+    width:100%;
+    height:auto;
+    object-fit:initial;
+    display:block;
+}
+.event-preview-placeholder { color:#4169e1; text-align:center; padding:20px }
+.event-preview-placeholder i { font-size:55px; display:block; margin-bottom:10px }
+.event-preview-info { padding:18px }
+.event-preview-info h3 { margin-bottom:8px }
+.event-preview-info p { color:#747d8d; font-size:14px; margin-bottom:14px }
+.event-view-btn { width:100% }
+.album-card {
+    border:2px solid #4169e1;
+    border-radius:14px;
+    background:#f7f9ff;
+    padding:25px;
+    text-align:center;
+    cursor:pointer
+}
+.album-card i {
+    font-size:40px;
+    color:#4169e1;
+    margin-bottom:10px
+}
+.album-card h4 {
+    font-size:18px
+}
+.media-section {
+    margin-top:25px
+}
+.media-section h3 {
+    margin-bottom:12px;
+    color:#172033
+}
+.media-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px
+}
+.media-card{
+    border:none;
+    border-radius:0;
+    overflow:hidden;
+    background:transparent;
+}
+.media-card img,
+.media-card video{
+    width:auto;
+    max-width:100%;
+    height:auto;
+    object-fit:contain;
+    display:block;
+}
+.media-card .media-name {
+    padding:8px;
+    font-size:12px
+}
+.empty {
+    padding:30px;
+    text-align:center;
+    background:#f7f9ff;
+    border-radius:10px;
+    color:#777
+}
+.viewer {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.94);
+    z-index:8000;
+    display:none;
+    align-items:center;
+    justify-content:center
+}
+.viewer.active {
+    display:flex
+}
+.viewer-content {
+    max-width:92%;
+    max-height:88%
+}
+.viewer-content img,.viewer-content video {
+    max-width:100%;
+    max-height:82vh;
+    border-radius:10px
+}
+.viewer-close {
+    position:absolute;
+    top:20px;
+    right:25px;
+    width:45px;
+    height:45px;
+    border:0;
+    border-radius:50%;
+    font-size:22px
+}
+.viewer-prev,.viewer-next {
+    position:absolute;
+    top:50%;
+    width:50px;
+    height:50px;
+    border:0;
+    border-radius:50%;
+    font-size:22px
+}
+.viewer-prev {
+    left:25px
+}
+.viewer-next {
+    right:25px
+}
+.demo-section {
+    background:#fff
+}
+.demo-box {
+    background:#f7f9ff;
+    border:2px solid #4169e1;
+    border-radius:25px;
+    padding:40px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px
+}
+.demo-box h2 {
+    font-size:35px
+}
+.demo-description {
+    color:#172033;
+    line-height:1.55;
+    margin-top:20px;
+    max-width:680px;
+    font-size:24px;
+    font-weight:500;
+    letter-spacing:.1px
+}
+.demo-description strong {
+    color:#4169e1;
+    font-weight:700;
+}
+
+.routine-box {
+    grid-column:1/-1;
+    background:#fff;
+    border:2px solid #4169e1;
+    border-radius:15px;
+    padding:22px
+}
+.routine-buttons {
+    display:flex;
+    gap:12px;
+    margin-top:15px
+}
+.routine-buttons button{
+    flex:1;
+    padding:15px 25px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(
+        180deg,
+        #5b7ff0 0%,
+        #4169e1 50%,
+        #3158d4 100%
+    );
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:
+        0 8px 20px rgba(65,105,225,.30),
+        inset 0 2px 6px rgba(255,255,255,.30),
+        inset 0 -5px 10px rgba(0,0,0,.15);
+    transition:transform .25s ease;
+}
+.routine-buttons button:hover{
+    transform:scale(1.05);
+}
+.routine-content {
+    margin-top:15px;
+    background:#f7f9ff;
+    padding:20px;
+    border-radius:10px;
+    white-space:pre-wrap;
+    min-height:120px
+}
+.admission {
+    background:#fff;
+    border-radius:25px;
+    padding:50px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    box-shadow:0 10px 40px rgba(0,0,0,.07)
+}
+.admission h2 {
+    font-size:40px;
+    line-height:1.2;
+    margin:10px 0 15px
+}
+.admission-section .btn.primary{
+    width:100%;
+    padding:14px 25px;
+    border:none;
+    border-radius:50px;
+
+    background:linear-gradient(
+        to bottom,
+        #5b8df5 0%,
+        #4169e1 50%,
+        #2854c7 100%
+    ) !important;
+
+    color:#fff !important;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+
+    box-shadow:
+        inset 0 2px 4px rgba(255,255,255,.35),
+        inset 0 -4px 8px rgba(0,0,0,.18),
+        0 5px 12px rgba(65,105,225,.25) !important;
+
+    transition:transform .25s ease !important;
+}
+
+.admission-section .btn.primary:hover{
+    transform:scale(1.03);
+
+    background:linear-gradient(
+        to bottom,
+        #5b8df5 0%,
+        #4169e1 50%,
+        #2854c7 100%
+    ) !important;
+
+    box-shadow:
+        inset 0 2px 4px rgba(255,255,255,.35),
+        inset 0 -4px 8px rgba(0,0,0,.18),
+        0 5px 12px rgba(65,105,225,.25) !important;
+}
+.contact-info {
+    margin-top:30px
+}
+.contact-info p {
+    margin-bottom:12px
+}
+.contact-info i {
+    color:#4169e1;
+    margin-right:10px
+}
+form {
+    display:flex;
+    flex-direction:column;
+    gap:15px
+}
+input,select,textarea {
+    width:100%;
+    border:1px solid #dfe3ec;
+    border-radius:9px;
+    padding:14px;
+    font:inherit;
+    outline:none
+}
+.contact-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px
+}
+.contact-card{
+    padding:0;
+    border-radius:18px;
+    background:#fff;
+    text-align:center;
+    border:2px solid #4169e1;
+    overflow:hidden;
+    text-decoration:none;
+    display:block;
+    box-shadow:0 8px 25px rgba(65,105,225,.15);
+    transition:.3s;
+}
+
+.contact-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 30px rgba(65,105,225,.25);
+}
+
+.contact-image{
+    width:100%;
+    overflow:hidden;
+}
+
+.contact-image img{
+    width:100%;
+    height:auto;
+    display:block;
+}
+.contact-content{
+    position:relative;
+    padding:55px 20px 25px;
+    background: #fff;
+}
+
+.contact-icon{
+    position:absolute;
+    top:-38px;
+    left:50%;
+    transform:translateX(-50%);
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#fff;
+    border:8px solid #e9f0ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#4169e1;
+    font-size:30px;
+}
+
+.contact-content h3{
+    margin:0 0 10px;
+    font-size:24px;
+    color:#172b72;
+}
+
+.contact-content p{
+    margin:0;
+    color:#172b72;
+    font-size:17px;
+}
+footer {
+    background:#111827;
+    color:#fff
+}
+.footer {
+    padding:45px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center
+}
+.footer p {
+    color:#aeb5c2;
+    margin-top:12px;
+    max-width:400px
+}
+.footer-social {
+    display:flex;
+    gap:15px
+}
+.footer-social a {
+    width:40px;
+    height:40px;
+    background:#202938;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center
+}
+.copyright {
+    text-align:center;
+    border-top:1px solid #273142;
+    padding:20px;
+    color:#9ca3af;
+    font-size:13px
+}
+.admin-link {
+    display:inline-block;
+    margin-top:15px;
+    color:#9ca3af;
+    font-size:13px;
+    cursor:pointer
+}
+.admin-link:hover {
+    color:#fff
+}
+/* admin */
+.admin-overlay {
+    position:fixed;
+    inset:0;
+    background:rgba(5,12,30,.9);
+    z-index:9000;
+    display:none;
+    overflow:auto;
+    padding:20px
+}
+.admin-overlay.active {
+    display:block
+}
+.admin-wrap {
+    max-width:1200px;
+    margin:auto;
+    background:#fff;
+    border-radius:20px;
+    min-height:90vh;
+    overflow:hidden
+}
+.admin-head {
+    background:#4169e1;
+    color:#fff;
+    padding:18px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center
+}
+.admin-head button {
+    background:#fff;
+    color:#4169e1;
+    border:0;
+    border-radius:8px;
+    padding:10px 15px;
+    font-weight:bold
+}
+.admin-login {
+    max-width:430px;
+    margin:70px auto;
+    padding:35px;
+    border:2px solid #4169e1;
+    border-radius:18px
+}
+.admin-login h2 {
+    text-align:center;
+    margin-bottom:20px
+}
+.hidden {
+    display:none!important
+}
+.admin-tabs {
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    padding:18px;
+    background:#f7f9ff;
+    border-bottom:1px solid #ddd
+}
+.admin-tabs button {
+    border:1px solid #4169e1;
+    background:#fff;
+    color:#4169e1;
+    padding:9px 12px;
+    border-radius:7px;
+    cursor:pointer
+}
+.admin-tabs button.active {
+    background:#4169e1;
+    color:#fff
+}
+.admin-content {
+    padding:22px
+}
+.admin-panel {
+    display:none
+}
+.admin-panel.active {
+    display:block
+}
+.admin-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px
+}
+.admin-card {
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:18px
+}
+.admin-table {
+    width:100%;
+    border-collapse:collapse
+}
+.admin-table th,.admin-table td {
+    padding:9px;
+    border-bottom:1px solid #ddd;
+    text-align:left
+}
+.table-wrap {
+    overflow:auto
+}
+.small-btn {
+    border:0;
+    border-radius:6px;
+    padding:7px 10px;
+    cursor:pointer;
+    margin:2px
+}
+.danger {
+    background:#dc2626;
+    color:#fff
+}
+.blue {
+    background:#4169e1;
+    color:#fff
+}
+.note {
+    font-size:13px;
+    color:#666
+}
+.admin-list-item {
+    border:1px solid #ddd;
+    padding:12px;
+    border-radius:8px;
+    margin:8px 0
+}
+.admin-list-item button {
+    margin-top:7px
+}
+
+/* =========================================================
+   REQUESTED HOVER / BUTTON STYLES
+   ========================================================= */
+.course-card {
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.course-card:hover {
+    transform:translateY(-6px);
+    box-shadow:0 14px 35px rgba(65,105,225,.18);
+    border-color:#4169e1;
+}
+.course-card a {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    min-width:190px;
+    padding:12px 24px;
+    margin-top:4px;
+    border-radius:999px;
+    background:#4169e1;
+    color:#fff;
+    font-weight:700;
+    transition:.25s ease;
+}
+.course-card a:hover {
+    background:#3157c7;
+    color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(65,105,225,.25);
+}
+
+.btn {
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+}
+.btn:hover {
+    transform:translateY(-2px);
+}
+.btn.primary:hover {
+    background:#3157c7;
+    box-shadow:0 8px 18px rgba(65,105,225,.25);
+}
+.btn.secondary:hover {
+    background:#4169e1;
+    color:#fff;
+    box-shadow:0 8px 18px rgba(65,105,225,.22);
+}
+
+/* Demo Class: Junior / Senior buttons */
+.demo-level-buttons {
+    display:flex;
+    gap:12px;
+}
+.level-btn {
+    flex:1;
+    min-height:48px;
+    border:2px solid #4169e1;
+    border-radius:10px;
+    background:#fff;
+    color:#4169e1;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s ease;
+}
+.level-btn:hover,
+.level-btn.active {
+    background:#4169e1;
+    color:#fff;
+    box-shadow:0 7px 16px rgba(65,105,225,.22);
+    transform:translateY(-2px);
+}
+
+/* Free Demo + Admission fields */
+#demoForm input,
+#demoForm select,
+#demoForm textarea,
+#admissionForm input,
+#admissionForm select,
+#admissionForm textarea {
+    border:1px solid #dfe3ec;
+    transition:border-color .2s ease, box-shadow .2s ease;
+}
+#demoForm input:hover,
+#demoForm select:hover,
+#demoForm textarea:hover,
+#admissionForm input:hover,
+#admissionForm select:hover,
+#admissionForm textarea:hover,
+#demoForm input:focus,
+#demoForm select:focus,
+#demoForm textarea:focus,
+#admissionForm input:focus,
+#admissionForm select:focus,
+#admissionForm textarea:focus {
+    border-color:#4169e1;
+    box-shadow:0 0 0 3px rgba(65,105,225,.10);
+}
+
+/* Admission container */
+.admission {
+    border:2px solid #4169e1;
+    transition:transform .25s ease, box-shadow .25s ease;
+}
+.admission:hover {
+    box-shadow:0 14px 40px rgba(65,105,225,.13);
+}
+
+/* Contact cards */
+.contact-card {
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+}
+.contact-card:hover {
+    transform:translateY(-4px);
+    background:#eef2ff;
+    border-color:#4169e1;
+    box-shadow:none;
+}
+.contact-card:hover i {
+    transform:none;
+}
+.contact-card i {
+    transition:none;
+}
+
+/* Gallery/Event cards */
+.gallery-item {
+    transition:transform .25s ease, box-shadow .25s ease;
+}
+.gallery-cat {
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+}
+.gallery-item:hover .gallery-cat {
+    transform:translateY(-6px);
+    background:#eef2ff;
+    border-color:#4169e1;
+    box-shadow:0 12px 30px rgba(65,105,225,.18);
+}
+.gallery-item:hover .gallery-cat > i {
+    transform:scale(1.08);
+}
+.gallery-cat > i {
+    transition:transform .2s ease;
+}
+.gallery-view-btn:hover {
+    background:#3157c7;
+}
+
+/* Social icons */
+.footer-social a,
+.social a {
+    transition:transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.footer-social a:hover,
+.social a:hover {
+    background:#4169e1;
+    color:#fff;
+    transform:translateY(-4px) scale(1.06);
+    box-shadow:0 8px 18px rgba(65,105,225,.25);
+}
+
+/* Admin Login yellow hover */
+.admin-login .btn.primary:hover {
+    background:#f2c94c;
+    color:#172033;
+    box-shadow:0 8px 18px rgba(242,201,76,.28);
+}
+.admin-link:hover {
+    color:#f2c94c;
+}
+
+.mobile-admission { display:none; }
+
+@media(max-width:850px) {
+    nav {
+        position:absolute;
+        top:75px;
+        left:0;
+        width:100%;
+        background:#fff;
+        display:none;
+        flex-direction:column;
+        padding:25px;
+        box-shadow:0 10px 20px rgba(0,0,0,.08)
+    }
+    nav.active {
+        display:flex
+    }
+    .nav-btn {
+        display:none
+    }
+    nav .mobile-admission {
+        display:block;
+        width:max-content;
+        background:#4169e1;
+        color:#fff;
+        padding:12px 22px;
+        border-radius:8px;
+        font-weight:700;
+        margin-top:5px;
+        text-align:center;
+    }
+    nav .mobile-admission:hover {
+        background:#2f56c7;
+        color:#fff;
+    }
+    .menu-btn {
+        display:block
+    }
+    .hero-content,.about,.admission,.demo-box {
+        grid-template-columns:1fr
+    }
+    .course-grid,.faculty-grid,.gallery-categories {
+        grid-template-columns:1fr 1fr
+    }
+    .result-grid,.media-grid {
+        grid-template-columns:1fr 1fr
+    }
+    .contact-grid {
+        grid-template-columns:1fr
+    }
+    .admin-grid {
+        grid-template-columns:1fr
+    }
+}
+@media(max-width:550px) {
+    .section-heading {
+        max-width:calc(100% - 20px);
+        padding:16px 22px 18px;
+        border-radius:35px;
+        margin-bottom:35px
+    }
+    .section-heading h2 {
+        font-size:30px;
+        line-height:1.2
+    }
+    .about-heading-pill {
+        padding:16px 22px 18px;
+        border-radius:35px
+    }
+    .about-heading-pill h2 {
+        font-size:30px;
+        line-height:1.2
+    }
+    .hero h1 {
+        font-size:42px
+    }
+    .hero-buttons {
+        flex-direction:column
+    }
+    .hero-stats {
+        gap:15px;
+        justify-content:space-between
+    }
+    .hero-card {
+        height:400px
+    }
+    .course-grid,.faculty-grid,.gallery-categories,.result-grid,.media-grid,.features,.album-grid,.event-preview-grid {
+        grid-template-columns:1fr
+    }
+    .admission,.demo-box {
+        padding:25px 18px
+    }
+    .modal {
+        padding:8px
+    }
+    .modal-box {
+        padding:18px
+    }
+    .admin-overlay {
+        padding:8px
+    }
+    .admin-content {
+        padding:12px
+    }
+}
+.demo-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    align-items:start;
+}
+
+.demo-left{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.routine-card{
+    background:#f7f9ff;
+    border:2px solid #4169e1;
+    border-radius:20px;
+    padding:25px;
+    width:100%;
+    box-sizing:border-box;
+    margin-top:0;
+    margin-bottom:0;
+    position:relative;
+    z-index:2;
+}
+
+@media(max-width:800px){
+
+    .demo-box{
+        display:flex;
+        flex-direction:column;
+        gap:25px;
+    }
+
+    .demo-left,
+    .demo-card{
+        width:100%;
+    }
+
+    .routine-card{
+        width:100%;
+        margin-top:0;
+    }
+
+    .routine-buttons{
+        display:flex;
+        gap:10px;
+    }
+
+    .routine-buttons button{
+        flex:1;
+    }
+
+}
+.routine-buttons{
+    display:flex;
+    gap:12px;
+    margin:15px 0;
+}
+
+.routine-buttons button{
+    flex:1;
+}
+
+.routine-content{
+    background:#fff;
+    border:1px solid #dfe3ec;
+    border-radius:12px;
+    padding:15px;
+    min-height:120px;
+}
+
+@media(max-width:800px){
+    .demo-layout{
+        grid-template-columns:1fr;
+    }
+}
+.credentials {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px 20px;
+}
+
+.credentials div {
+    padding: 8px;
+}
+/* All Main Headings */
+h1,
+h2,
+h3,
+.section-title,
+.hero h1,
+.about-content h2,
+.courses h2,
+.faculty h2,
+.gallery h2,
+.results h2,
+.demo-class h2,
+.admission h2,
+.contact h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #001F54;
+}
+
+/* Highlighted Words in Headings */
+h1 span,
+h2 span,
+h3 span {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #001F54;
+}
+.view-details-btn {
+    margin-top: 14px;
+    padding: 10px 22px;
+    background: #001F54;
+    color: #ffffff;
+    border: 1px solid #001F54;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.view-details-btn:hover {
+    background: #001F54;
+    border-color: #001F54;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   CSS END
+   ========================================================= */
+</style>
+</head>
+<body>
+
+<header class="header"><div class="container nav">
+<a href="#home" class="logo"><img src="image/ambition.png" alt="Ambition Spoken English"></a>
+<nav id="navbar"><a href="#home">Home</a><a href="#about">About</a><a href="#courses">Courses</a><a href="#faculty">Faculty</a><a href="#gallery">Gallery</a><a href="#results">Results</a><a href="#demo">Demo Class</a><a href="#contact">Contact</a><a href="#admission" class="mobile-admission">Admission</a></nav>
+<a href="#admission" class="nav-btn">Admission</a><button class="menu-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
+</div></header>
+
+<section class="hero" id="home"><div class="container hero-content">
+<div class="hero-text"><span class="tag"><i class="fa-solid fa-star"></i> Excellence in Education</span><h1><span>Improve Your English & have a Better Future</span> With Reyajul sir</h1><p>Quality education, experienced teachers and personal guidance to help every student achieve their goals.</p><div class="hero-buttons"><a href="#admission" class="btn primary">Join Now <i class="fa-solid fa-arrow-right"></i></a><a href="#courses" class="btn secondary">Explore Courses</a></div><div class="hero-stats"><div><strong id="statExperience">11+</strong><small>Years Experience</small></div><div><strong id="statStudents">120+</strong><small>Students</small></div><div><strong id="statSuccess">96%</strong><small>Success Rate</small></div></div></div>
+<div class="hero-card"><div class="sir-photo-wrapper"><img src="image/reyajulsir.png" class="sir-photo" alt="Reyajul Sir"></div></div>
+</div></section>
+
+<section class="section" id="about">
+<div class="container about">
+
+    <div class="about-image">
+
+        <img
+            src="image/coaching-centre.jpg"
+            alt="Ambition Coaching Centre"
+            class="coaching-centre-photo"
+        >
+<div class="about-photo-overlay">
+    <div class="digital-title">
+        
+        
+        <span>Digital Classroom</span>
+        
+       
+    </div>
+</div>
+    </div>
+
+    <div class="about-content">
+
+        <div class="about-heading-pill">
+            <span class="section-tag">ABOUT US</span>
+
+            <h2>
+                We Help Students <span>Achieve More</span>
+            </h2>
+        </div>
+
+        <p>
+            <b>About the Institution</b><br>
+ AMBITION Spoken English Centre
+
+AMBITION Spoken English Centre was established on 9 November 2015 with the aim of helping learners improve their English communication skills and develop the confidence to express themselves in everyday, academic and professional situations.
+
+the centre provides a learning environment that encourages participation, regular practice and personal development.
+
+Our approach combines spoken English practice with vocabulary development, grammar in context, pronunciation, conversations, public speaking, debates and other communication-based activities.
+
+We believe that every learner has the potential to improve. With consistent practice, appropriate guidance and opportunities to communicate, students can gradually become more confident, capable and independent learners.
+        </p>
+
+<p><b>Vision</b><br>
+To become a trusted and respected institution for English communication, personality development and confidence-building education, with opportunities to reach more learners through future branches.</p>
+ 
+<p><b>Mission</b>
+    <ul><li>To make English communication more accessible to learners.
+</li>
+
+<li>To encourage students to speak without unnecessary fear or hesitation.</li>
+
+<li>To develop confidence, presentation skills and effective communication.</li>
+
+<li>To provide opportunities for public speaking, debates and group discussions.</li>
+
+<li>To support continuous learning and personal growth</li></ul></p>
+
+<p><b>Our core Values</b><br>
+• Student-Centred Learning
+(Supporting learners at different levels)
+<br>
+• Integrity
+(Honest communication and responsible practices)
+<br>
+• Continuous Improvement
+(Learning through practice and feedback)
+<br>
+• Participation
+(Creating opportunities for every learner to contribute)
+</p>
+
+<h3>Recognition and Institutional Credentials</h3>
+
+<div class="credentials">
+    <div>• India Book of Records Achiever</div>
+    <div>• ISO 9001:2015 certification</div>
+    <div>• MSME registration</div>
+    <div>• Trade Licence & Registered</div>
+</div>
+<p>
+ Our experienced faculty members use modern teaching methods, regular tests and doubt-clearing sessions to improve student performance.
+        </p>
+
+        <div class="features">
+
+            <div>
+                <i class="fa-solid fa-circle-check"></i>
+                Experienced Faculty
+            </div>
+
+            <div>
+                <i class="fa-solid fa-circle-check"></i>
+                Regular Tests
+            </div>
+
+            <div>
+                <i class="fa-solid fa-circle-check"></i>
+                Personal Guidance
+            </div>
+
+            <div>
+                <i class="fa-solid fa-circle-check"></i>
+                Doubt Clearing
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+<section class="section courses-section" id="courses">
+<div class="container">
+
+<div class="section-heading">
+<span class="section-tag">OUR COURSES</span>
+<h2>Choose The Right <span>Course</span></h2>
+<p>Structured courses designed for different academic levels.</p>
+</div>
+
+<div class="course-grid">
+
+<div class="course-card">
+<img src="image/course1.jpg" class="course-image" alt="Class 5 - 8">
+<div class="course-content">
+<span>CLASS 5 - 8</span>
+<h3>Core English</h3>
+<p>Build strong fundamentals in English.</p>
+<a href="#admission">Enquire Now →</a>
+</div>
+</div>
+
+<div class="course-card">
+<img src="image/course2.jpg" class="course-image" alt="Class 9 - 12">
+<div class="course-content">
+<span>CLASS 9 - 12</span>
+<h3>Basic and Advance English</h3>
+<p>Complete academic preparation with regular examinations and revision.</p>
+<a href="#admission">Enquire Now →</a>
+</div>
+</div>
+
+<div class="course-card">
+<img src="image/course3.jpg" class="course-image" alt="Class Others">
+<div class="course-content">
+<span>CLASS OTHERS</span>
+<h3>Advance Level English</h3>
+<p>Advanced preparation for board examinations and competitive exams.</p>
+<a href="#admission">Enquire Now →</a>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="section" id="faculty"><div class="container"><div class="section-heading"><span class="section-tag">OUR FACULTY</span><h2>Meet Our <span>Teachers</span></h2><p>Learn from experienced and dedicated educators.</p></div><div class="faculty-grid" id="facultyGrid"></div></div></section>
+
+<section class="section" id="gallery">
+<div class="container">
+
+<div class="section-heading">
+    <span class="section-tag">GALLERY</span>
+    <h2>Life At <span>Ambition</span></h2>
+    <p>Choose a category to view its albums.</p>
+</div>
+
+<div class="gallery-categories">
+
+    <div class="gallery-item">
+        <div class="gallery-cat">
+            <img src="image/event-gallery.jpg" alt="Event">
+
+            <div class="gallery-overlay">
+                <span>Events</span>
+
+                <button class="gallery-view-btn" onclick="openCategory('Event')">
+                    View Events <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="gallery-item">
+        <div class="gallery-cat">
+            <img src="image/student-gallery.jpg" alt="Student">
+
+            <div class="gallery-overlay">
+                <span>Students</span>
+
+                <button class="gallery-view-btn" onclick="openCategory('Student')">
+                    View Students <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="gallery-item">
+        <div class="gallery-cat">
+            <img src="image/award-gallery.jpg" alt="Award">
+
+            <div class="gallery-overlay">
+                <span>Awards</span>
+
+                <button class="gallery-view-btn" onclick="openCategory('Award')">
+                    View Awards <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="gallery-item">
+        <div class="gallery-cat">
+            <img src="image/teaching-gallery.jpg" alt="Teaching">
+
+            <div class="gallery-overlay">
+                <span>Teaching</span>
+
+                <button class="gallery-view-btn" onclick="openCategory('Teaching')">
+                    View Teaching <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+</section>
+
+<section class="results" id="results"><div class="container"><div class="section-heading"><span class="section-tag">OUR RESULTS</span><h2>Our Students <span>Achieve</span></h2><p>Demonstrating consistent excellence and outstanding outcomes annually.</p></div><div class="result-grid" id="resultGrid"></div></div></section>
+
+<div class="modal" id="albumModal"><div class="modal-box"><div class="modal-head"><h2 id="albumModalTitle">Gallery</h2><button class="close" onclick="closeModal('albumModal')">×</button></div><div id="albumGrid" class="album-grid"></div></div></div>
+<div class="modal" id="mediaModal"><div class="modal-box"><div class="modal-head"><h2 id="mediaModalTitle">Full Photos + Videos</h2><button class="close" onclick="closeModal('mediaModal')">×</button></div><div id="mediaBody"></div></div></div>
+<div class="viewer" id="viewer"><button class="viewer-close" onclick="closeModal('viewer')">×</button><button class="viewer-prev" onclick="viewerPrev()">‹</button><div id="viewerContent" class="viewer-content"></div><button class="viewer-next" onclick="viewerNext()">›</button></div>
+
+<section class="section demo-section" id="demo">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-tag">FREE DEMO CLASS</span>
+            <h2>Join Our <span>Free Demo Class</span></h2>
+        </div>
+
+        <div class="demo-box">
+
+            <!-- LEFT SIDE -->
+            <div class="demo-left">
+
+                <div class="demo-info">
+
+                    <h2>Free demo class</h2>
+
+                    <p>Fill in student and guardian information.</p>
+
+                    <p class="demo-description">
+                        <span>Take the first step towards </span>
+                        <strong>better English.</strong>
+                        <br>
+                        <span>Join our </span>
+                        <strong>free demo class</strong>
+                        <span> and experience our teaching approach before you enroll.</span>
+                    </p>
+
+                    <div class="contact-info">
+                        <p>
+                            <i class="fa-solid fa-phone"></i>
+                            <span id="demoPhone">+91 9748910191</span>
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- ROUTINE / SCHEDULE -->
+                <div class="routine-card">
+
+                    <h3>Routine / Schedule</h3>
+
+                    <div class="routine-buttons">
+
+                        <button type="button"
+                                onclick="showRoutine('Junior')">
+                            Junior
+                        </button>
+
+                        <button type="button"
+                                onclick="showRoutine('Senior')">
+                            Senior
+                        </button>
+
+                    </div>
+
+                    <div id="routineContent"
+                         class="routine-content">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE : DEMO FORM -->
+            <div class="demo-card">
+
+                <form id="demoForm">
+
+                    <input
+                        id="demoStudent"
+                        placeholder="Student name"
+                        required
+                    >
+
+                    <input
+                        id="demoMobile"
+                        type="tel"
+                        placeholder="Student mobile number"
+                        required
+                    >
+
+                    <input
+                        id="demoEmail"
+                        type="email"
+                        placeholder="Student email ID"
+                    >
+
+                    <select id="demoLevel" required>
+
+                        <option value="">
+                            Select Level
+                        </option>
+
+                        <option value="Junior">
+                            Junior
+                        </option>
+
+                        <option value="Senior">
+                            Senior
+                        </option>
+
+                    </select>
+
+                    <input
+                        id="guardianName"
+                        placeholder="Guardian name"
+                    >
+
+                    <input
+                        id="guardianMobile"
+                        type="tel"
+                        placeholder="Guardian mobile number"
+                    >
+
+                    <textarea
+                        id="demoMessage"
+                        rows="4"
+                        placeholder="Text message"></textarea>
+
+                    <button
+    type="submit"
+    class="btn primary whatsapp-btn">
+    Send to WhatsApp
+    <i class="fa-brands fa-whatsapp"></i>
+</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section admission-section" id="admission"><div class="container"><div class="admission"><div><span class="section-tag">ADMISSION OPEN</span><h2>Start Your Journey <span>Today!</span></h2><p><h3>Begin Your Journey with AMBITION</h3>
+
+Every confident communicator begins somewhere. Whether you are a beginner, a school student looking to improve your English, or a learner preparing for future academic and professional opportunities, AMBITION Spoken English Centre offers a learning environment focused on practice, participation and personal growth.
+
+Explore our courses, select your preferred class schedule and contact us to learn more about admission.
+
+Take the first step towards speaking with greater confidence.</p><div class="contact-info"><p><i class="fa-solid fa-phone"></i><a id="phoneLink" href="tel:+919748910191"><span id="phoneText">+91 9748910191</span></a></p><p><i class="fa-solid fa-envelope"></i><a id="emailLink" href="mailto:spokenenglishambition@gmail.com"><span id="emailText">spokenenglishambition@gmail.com</span></a></p></div></div>
+<form id="admissionForm"><input id="name" placeholder="Student Name" required><input id="phone" type="tel" placeholder="Phone Number" required><select id="course" required><option value="">Select Course</option><option>Class 5 - 8</option><option>Class 9 - 12</option><option>Class Others</option></select><textarea id="message" placeholder="Your Message" rows="4"></textarea><button class="btn primary">Submit Enquiry <i class="fa-solid fa-envelope"></i></button><p class="note">Clicking submit will open your email app with the admission details filled in.</p></form></div></div></section>
+
+<section class="section" id="contact">
+<div class="container">
+
+<div class="section-heading">
+    <span class="section-tag">CONTACT US</span>
+    <h2>Get In <span>Touch</span></h2>
+</div>
+
+<div class="contact-grid">
+
+<a id="mapLink" class="contact-card" target="_blank">
+    <div class="contact-image">
+        <img src="image/contact-address.jpg" alt="Address">
+    </div>
+    <div class="contact-content">
+        <div class="contact-icon">
+            <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <h3>Address</h3>
+        <p id="addressText">Amta (Kolatala) Howrah, West Bengal</p>
+    </div>
+</a>
+
+<a id="contactPhoneLink" class="contact-card" href="tel:+919748910191">
+    <div class="contact-image">
+        <img src="image/contact-phone.jpg" alt="Phone">
+    </div>
+    <div class="contact-content">
+        <div class="contact-icon">
+            <i class="fa-solid fa-phone"></i>
+        </div>
+        <h3>Phone</h3>
+        <p id="contactPhoneText">+91 9748910191</p>
+    </div>
+</a>
+
+<a id="contactEmailLink" class="contact-card" href="mailto:spokenenglishambition@gmail.com">
+    <div class="contact-image">
+        <img src="image/contact-email.jpg" alt="Email">
+    </div>
+    <div class="contact-content">
+        <div class="contact-icon">
+            <i class="fa-solid fa-envelope"></i>
+        </div>
+        <h3>Email</h3>
+        <p id="contactEmailText">spokenenglishambition@gmail.com</p>
+    </div>
+</a>
+
+</div>
+</div>
+</section>
+
+<footer>
+    <div class="container footer">
+
+        <div>
+            <a href="#home" class="logo">
+                <i class="fa-solid fa-graduation-cap"></i> Ambition
+            </a>
+
+            <p>
+                Empowering students to achieve their dreams through quality education.
+            </p>
+
+            <span class="admin-link" onclick="openAdmin()">
+                🔒 Admin Login
+            </span>
+        </div>
+
+        <div class="footer-social">
+
+            <a id="fbLink" href="https://www.facebook.com/share/1C5TFeggWa/" target="_blank">
+                <i class="fab fa-facebook"></i>
+            </a>
+
+            <a id="igLink" href="https://www.instagram.com/ambition_spoken_english?stkn=ZnF0bDg4dGF5NHBt" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a id="ytLink" href="https://youtube.com/@ambitionwithreyajul?si=4Fa0W8w7ZA7ERJ7m" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+
+            <a id="waLink" href="https://wa.me/919748910191" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 Ambition Spoken English Centre.
+        Develop by KRIBSP
+    </div>
+</footer>
+
+<!-- SAME PAGE ADMIN -->
+<div class="admin-overlay" id="adminOverlay"><div class="admin-wrap">
+<div class="admin-head"><strong><i class="fa-solid fa-user-shield"></i> Ambition Admin Panel</strong><button onclick="closeAdmin()">Close</button></div>
+<div id="adminLoginBox" class="admin-login"><h2>Admin Login</h2><p class="note">Login with the Admin user created in Supabase Authentication.</p><form id="adminLoginForm"><input id="adminEmail" type="email" placeholder="Admin Email" required><input id="adminPassword" type="password" placeholder="Password" required><button class="btn primary">Login</button></form><p id="loginStatus" class="note"></p></div>
+<div id="adminDashboard" class="hidden"><div class="admin-tabs"><button class="active" data-tab="galleryAdmin">Gallery</button><button data-tab="facultyAdmin">Faculty</button><button data-tab="resultAdmin">Results</button><button data-tab="routineAdmin">Routine</button><button onclick="adminLogout()">Logout</button></div>
+<div class="admin-content">
+
+<div id="galleryAdmin" class="admin-panel">
+  <div class="admin-grid">
+
+    <div class="admin-card">
+
+
+      <hr style="margin:20px 0">
+
+      <h3>Upload Photo / Video</h3>
+
+      <form id="mediaForm">
+
+        <select id="mediaAlbum" required>
+          <option value="">Select Album</option>
+        </select>
+
+        <input
+          id="mediaFile"
+          type="file"
+          accept="image/*,video/*"
+          required
+        >
+
+        <button type="submit" class="btn primary">
+          Upload Media
+        </button>
+
+      </form>
+
+      <p id="mediaStatus" class="note"></p>
+
+    </div>
+
+    <div class="admin-card">
+      <h3 style="margin-top:25px">
+        Media
+      </h3>
+
+      <div id="adminMedia">
+        <p class="note">No media loaded yet.</p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="facultyAdmin" class="admin-panel"><div class="admin-grid"><div class="admin-card"><h3>Faculty</h3><form id="facultyForm"><input type="hidden" id="facultyId"><input id="facultyName" placeholder="Teacher name" required><input id="facultySubject" placeholder="Subject" required><textarea id="facultyBio" placeholder="Teacher Bio / Details" rows="4"></textarea><input id="facultyPhoto" type="file" accept="image/*"><input id="facultyFacebook" placeholder="Facebook URL"><input id="facultyInstagram" placeholder="Instagram URL"><button class="btn primary">Save Faculty</button></form></div><div class="admin-card"><div id="adminFacultyList"></div></div></div></div>
+
+<div id="resultAdmin" class="admin-panel"><div class="admin-grid"><div class="admin-card"><h3>Result</h3><form id="resultForm"><input type="hidden" id="resultId"><input id="resultTitle" placeholder="Title" required><input id="resultValue" placeholder="Value e.g. 95%" required><input id="resultLabel" placeholder="Label" required><input id="resultPhoto" type="file" accept="image/*"><button class="btn primary">Save Result</button></form></div><div class="admin-card"><div id="adminResultList"></div></div></div></div>
+
+<div id="routineAdmin" class="admin-panel"><div class="admin-grid"><div class="admin-card"><h3>Junior Routine — Text</h3><textarea id="juniorRoutine" rows="15" placeholder="Write Junior routine as text..."></textarea><button class="btn primary" onclick="saveRoutine('Junior')">Save Junior</button></div><div class="admin-card"><h3>Senior Routine — Text</h3><textarea id="seniorRoutine" rows="15" placeholder="Write Senior routine as text..."></textarea><button class="btn primary" onclick="saveRoutine('Senior')">Save Senior</button></div></div></div>
+
+
+</div></div></div></div>
+
+<script>
+/* =========================================================
+   JAVASCRIPT START — Supabase + Website Functions
+   ========================================================= */
+/* ================= SUPABASE ================= */
+const SUPABASE_URL="https://xujgtrfsuwpxmfcbpeip.supabase.co";
+const SUPABASE_ANON_KEY="sb_publishable_5bGbYyoYj-hebBTCXZWN4A_R5IfsKFE";
+
+const sb=(SUPABASE_URL.startsWith("http")&&SUPABASE_ANON_KEY!=="YOUR_SUPABASE_ANON_KEY")?supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;
+let allAlbums=[],currentAlbum=null,viewerItems=[],viewerIndex=0;
+let juniorRoutine="Routine not added yet.",seniorRoutine="Routine not added yet.",DEMO_WA="919748910191";
+
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function closeModal(id){document.getElementById(id).classList.remove("active")}
+function showModal(id){document.getElementById(id).classList.add("active")}
+
+async function loadPublic(){
+ if(!sb)return;
+ const {data:s}=await sb.from("site_settings").select("*");const settings=Object.fromEntries((s||[]).map(x=>[x.key,x.value]));
+ if(settings.phone){phoneText.textContent=settings.phone;contactPhoneText.textContent=settings.phone;demoPhone.textContent=settings.phone;phoneLink.href="tel:"+settings.phone.replace(/\s/g,"");contactPhoneLink.href="tel:"+settings.phone.replace(/\s/g,"")}
+ if(settings.email){emailText.textContent=settings.email;contactEmailLink.href="mailto:"+settings.email}
+ if(settings.address){addressText.textContent=settings.address;}
+const mapAddress=settings.address||"Amta (Kolatala), Howrah, West Bengal";
+const mapUrl=(settings.map_url&&String(settings.map_url).trim())?String(settings.map_url).trim():`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapAddress)}`;
+mapLink.href=mapUrl;mapLink.target="_blank";mapLink.rel="noopener noreferrer";
+
+ if(settings.facebook)fbLink.href=settings.facebook;if(settings.instagram)igLink.href=settings.instagram;if(settings.youtube)ytLink.href=settings.youtube;
+ 
+ if(settings.whatsapp){DEMO_WA=settings.whatsapp;waLink.href="https://wa.me/"+settings.whatsapp}
+ if(settings.experience){statExperience.textContent=settings.experience;yearsBox.textContent=settings.experience}if(settings.students)statStudents.textContent=settings.students;if(settings.success_rate)statSuccess.textContent=settings.success_rate;
+ const {data:f}=await sb.from("faculty").select("*").order("created_at");renderFaculty(f||[]);
+ const {data:r}=await sb.from("results").select("*").order("created_at");renderResults(r||[]);
+ const {data:rt}=await sb.from("routine").select("*");(rt||[]).forEach(x=>{if(x.level==="Junior")juniorRoutine=x.content;if(x.level==="Senior")seniorRoutine=x.content});
+ const {data:a}=await sb.from("gallery_albums").select("*").order("category").order("sort_order");allAlbums=a||[];
+}
+
+function renderFaculty(rows) {
+    const g = document.getElementById("facultyGrid");
+    g.innerHTML = "";
+
+    if (!rows.length) {
+        rows = [
+            { name: "NULL FOR TEACHER", subject: "NULL FOR SUBJECT" },
+            { name: "Reyajul Sir", subject: "English Faculty" },
+            { name: "NULL FOR TEACHER", subject: "NULL FOR SUBJECT" }
+        ];
+    }
+
+    rows.slice(0, 3).forEach((x, index) => {
+        g.innerHTML += `
+            <div class="teacher-card">
+                <div class="teacher-photo">
+                    ${x.photo_url
+                        ? `<img src="${esc(x.photo_url)}" alt="${esc(x.name)}">`
+                        : '<i class="fa-solid fa-user-tie"></i>'}
+                </div>
+
+                <h3>${esc(x.name)}</h3>
+                <p>${esc(x.subject)}</p>
+
+                <div class="social">
+                    <a href="${esc(x.facebook || "#")}" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="${esc(x.instagram || "#")}" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+
+                <button type="button"
+                    class="view-details-btn"
+                    onclick="viewFacultyDetails(${index})">
+                    View Details
+                </button>
+            </div>`;
+    });
+}
+
+async function viewFacultyDetails(index) {
+    const cards = document.querySelectorAll("#facultyGrid .teacher-card");
+    const card = cards[index];
+
+    if (!card) return;
+
+    const name = card.querySelector("h3")?.textContent || "";
+    const subject = card.querySelector("p")?.textContent || "";
+    const photo = card.querySelector(".teacher-photo img")?.src || "";
+
+    const facebook = card.querySelector(".fa-facebook")?.closest("a")?.href || "";
+    const instagram = card.querySelector(".fa-instagram")?.closest("a")?.href || "";
+
+    const existing = document.getElementById("facultyDetailsPopup");
+    if (existing) existing.remove();
+
+    const popup = document.createElement("div");
+    popup.id = "facultyDetailsPopup";
+    popup.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:99999;padding:20px;";
+
+    const box = document.createElement("div");
+    box.style.cssText = "background:white;color:#111;padding:35px 30px;border-radius:20px;max-width:650px;width:90%;max-height:85vh;overflow-y:auto;text-align:center;position:relative;box-sizing:border-box;";
+
+    box.innerHTML = "<p>Loading teacher details...</p>";
+    popup.appendChild(box);
+    document.body.appendChild(popup);
+
+    const close = document.createElement("button");
+    close.type = "button";
+    close.textContent = "×";
+    close.setAttribute("aria-label", "Close");
+    close.style.cssText = "position:absolute;right:12px;top:8px;border:0;background:none;font-size:28px;cursor:pointer;";
+    close.onclick = () => popup.remove();
+
+    popup.addEventListener("click", e => {
+        if (e.target === popup) popup.remove();
+    });
+
+    const { data, error } = await sb
+        .from("faculty")
+        .select("bio")
+        .eq("name", name)
+        .eq("subject", subject)
+        .limit(1)
+        .maybeSingle();
+
+    if (!popup.isConnected) return;
+
+    const bio = data?.bio || "";
+
+    box.innerHTML = `
+        <h2>${name}</h2>
+        ${photo ? `<img src="${photo}" alt="Teacher photo" style="width:140px;max-width:100%;border-radius:12px;">` : ""}
+        <p><strong>Subject:</strong> ${subject}</p>
+        ${bio ? `
+            <div style="text-align:left;margin-top:20px;">
+                <h3>About the Teacher</h3>
+                <p style="white-space:pre-wrap;line-height:1.7;">${bio.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;")}</p>
+            </div>
+        ` : `<p style="margin-top:20px;">Teacher bio has not been added yet.</p>`}
+        ${!error && facebook && !facebook.endsWith("#") ? `<p><a href="${facebook}" target="_blank" rel="noopener noreferrer">Facebook Profile</a></p>` : ""}
+        ${!error && instagram && !instagram.endsWith("#") ? `<p><a href="${instagram}" target="_blank" rel="noopener noreferrer">Instagram Profile</a></p>` : ""}
+    `;
+
+    box.appendChild(close);
+
+    if (error) {
+        console.error("Faculty bio loading error:", error.message);
+    }
+}
+function renderResults(rows){
+    const g=document.getElementById("resultGrid");
+    g.innerHTML="";
+
+    if(!rows.length){
+        rows=[
+            {title:"",value:"00%",label:"Highest Score",photo_url:""},
+            {title:"",value:"00%",label:"Success Rate",photo_url:""},
+            {title:"",value:"00+",label:"Top Scorers",photo_url:""},
+            {title:"",value:"00+",label:"District Rankers",photo_url:""}
+        ];
+    }
+
+    rows.slice(0,4).forEach(x=>{
+        const photo=x.photo_url
+            ? `<img src="${esc(x.photo_url)}" alt="${esc(x.title||"Student")}" style="width:110px;height:110px;object-fit:cover;border-radius:50%;border:3px solid #fff;margin:0 auto 15px;display:block;">`
+            : "";
+
+        g.innerHTML+=`
+            <div>
+                ${photo}
+                ${x.title?`<h3 style="margin:8px 0 10px;color:#fff;font-size:22px;">${esc(x.title)}</h3>`:""}
+                <strong>${esc(x.value)}</strong>
+                <span>${esc(x.label)}</span>
+            </div>
+        `;
+    });
+}
+
+/* Gallery: category -> Event preview -> full photos + videos */
+/* Event preview images: image/event1-preview.jpg ... image/event4-preview.jpg */
+const EVENT_PREVIEWS={"Event 1":"image/event1-preview.jpg","Event 2":"image/event2-preview.jpg","Event 3":"image/event3-preview.jpg","Event 4":"image/event4-preview.jpg"};
+function eventPreviewCard(name,album){
+ const preview=EVENT_PREVIEWS[name]||"";
+ const image=preview?`<img src="${esc(preview)}" alt="${esc(name)} Preview" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">`:"";
+ const fallback=`<div class="event-preview-placeholder"${preview?' style="display:none"':''}><i class="fa-solid fa-image"></i><strong>${esc(name)} Preview Photo</strong><div class="note">Add ${esc(preview||"preview image path")}</div></div>`;
+ const action=album?`openAlbum('${album.id}')`:`openAlbumByName('Event','${name}')`;
+ return `<div class="event-preview-card"><div class="event-preview-photo">${image}${fallback}</div><div class="event-preview-info"><h3>${esc(name)}</h3><p>Preview photo of this event. View the complete event gallery below.</p><button class="btn primary event-view-btn" onclick="${action}">View Full Photos + Videos <i class="fa-solid fa-arrow-right"></i></button></div></div>`;
+}
+async function openCategory(category){
+    if(!sb){
+        alert("Supabase is not configured yet.");
+        return;
+    }
+
+    const {data,error}=await sb
+        .from("gallery_albums")
+        .select("*")
+        .eq("category",category)
+        .order("sort_order");
+
+    if(error){
+        alert(error.message);
+        return;
+    }
+
+    const albums=data||[];
+
+    // Student / Award / Teaching:
+    // Directly open the first album's Photos + Videos
+    if(category==="Student" || category==="Award" || category==="Teaching"){
+        if(!albums.length){
+            mediaModalTitle.textContent=category+" — Photos + Videos";
+            mediaBody.innerHTML='<div class="empty">No photos or videos added yet.</div>';
+            showModal("mediaModal");
+            return;
+        }
+
+        await openAlbumByName(category,category);
+return;
+    }
+
+    // Event:
+    // Keep Event 1-4 preview page
+    const albumModalTitleEl=document.getElementById("albumModalTitle");
+    const albumGridEl=document.getElementById("albumGrid");
+
+    if(category==="Event"){
+    albumModalTitleEl.textContent="Events";
+    albumGridEl.className="event-preview-grid";
+
+    const names=["Event 1","Event 2","Event 3","Event 4"];
+
+    albumGridEl.innerHTML=names.map(name=>`
+        <div class="event-preview-card">
+
+            <div class="event-preview-photo">
+                <img src="${EVENT_PREVIEWS[name]}" alt="${esc(name)} Preview">
+            </div>
+
+            <div class="event-preview-info">
+                <h3>${esc(name)}</h3>
+                <p>Preview photo of this event. View the complete event gallery below.</p>
+
+                <button
+                    class="btn primary event-view-btn"
+                    onclick="openEventMedia('${name}')">
+                    View Full Photos + Videos
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+        </div>
+    `).join("");
+
+    showModal("albumModal");
+    return;
+}
+}
+async function openEventMedia(eventName){
+    if(!sb){alert("Supabase is not connected. Please add your Supabase URL and Anon Key.");return;}
+    const {data:album,error}=await sb
+  .from("gallery_albums")
+  .select("*")
+  .eq("category","Event")
+  .eq("name",eventName)
+  .order("sort_order",{ascending:true})
+  .limit(1)
+  .maybeSingle();
+
+    if(error){alert(error.message);return;}
+    if(!album){mediaModalTitle.textContent=eventName+" — Full Photos + Videos"; mediaBody.innerHTML='<div class="empty"><i class="fa-solid fa-images" style="font-size:45px;color:#4169e1"></i><p style="margin-top:12px">'+esc(eventName)+' album is not created yet.</p><p class="note">Please login to Admin → Gallery and create this Event album.</p></div>'; closeModal("albumModal"); showModal("mediaModal"); return;}
+    await openAlbum(album.id);
+}
+
+async function openAlbumByName(category,name){
+  const {data:albums,error}=await sb
+    .from("gallery_albums")
+    .select("*")
+    .eq("category",category)
+    .eq("name",name)
+    .order("sort_order",{ascending:true});
+
+  if(error){
+    alert(error.message);
+    return;
+  }
+
+  if(!albums || !albums.length){
+    mediaModalTitle.textContent=name+" — Full Photos + Videos";
+    mediaBody.innerHTML='<div class="empty">No photos or videos uploaded for this event yet.</div>';
+    showModal("mediaModal");
+    return;
+  }
+
+  // If duplicate albums exist, find the album that actually has media
+  let selectedAlbum=albums[0];
+
+  for(const album of albums){
+    const {data:media}=await sb
+      .from("gallery_media")
+      .select("id")
+      .eq("album_id",album.id)
+      .limit(1);
+
+    if(media && media.length){
+      selectedAlbum=album;
+      break;
+    }
+  }
+
+  await openAlbum(selectedAlbum.id);
+}
+async function openAlbum(id){
+ const {data:a,error:albumError}=await sb.from("gallery_albums").select("*").eq("id",id).single(); if(albumError||!a)return; currentAlbum=a;
+ const {data:m,error:mediaError}=await sb.from("gallery_media").select("*").eq("album_id",id).order("created_at",{ascending:true}); if(mediaError){alert(mediaError.message);return}
+ const photos=(m||[]).filter(x=>(x.file_type||"").startsWith("image/")), videos=(m||[]).filter(x=>(x.file_type||"").startsWith("video/"));
+ mediaModalTitle.textContent=a.name+" — Full Photos + Videos";
+ mediaBody.innerHTML=`<div class="media-section"><h3><i class="fa-solid fa-images"></i> Full Photo Gallery</h3><div class="media-grid" id="photoGrid"></div></div><div class="media-section"><h3><i class="fa-solid fa-video"></i> Full Video Gallery</h3><div class="media-grid" id="videoGrid"></div></div>`;
+ const pg=document.getElementById("photoGrid"),vg=document.getElementById("videoGrid");
+ if(!photos.length)pg.innerHTML='<div class="empty">No full photos uploaded for this event yet.</div>'; else photos.forEach((x,i)=>{const d=document.createElement("div");d.className="media-card";d.innerHTML=`<img src="${esc(x.file_url)}" alt="${esc(x.file_name)}">`;d.onclick=()=>openViewer(photos,i);pg.appendChild(d)});
+if(!videos.length)vg.innerHTML='<div class="empty">No full videos uploaded for this event yet.</div>'; else videos.forEach((x,i)=>{const d=document.createElement("div");d.className="media-card";d.innerHTML=`<video src="${esc(x.file_url)}" muted playsinline preload="metadata"></video>`;d.onclick=()=>openViewer(videos,i);vg.appendChild(d)});
+ closeModal("albumModal"); showModal("mediaModal");
+}
+
+function openViewer(items,index){viewerItems=items;viewerIndex=index;updateViewer();showModal("viewer")}
+function updateViewer(){const x=viewerItems[viewerIndex];viewerContent.innerHTML=(x.file_type||"").startsWith("video/")?`<video src="${esc(x.file_url)}" controls autoplay></video>`:`<img src="${esc(x.file_url)}" alt="">`}
+function viewerNext(){if(viewerItems.length){viewerIndex=(viewerIndex+1)%viewerItems.length;updateViewer()}}
+function viewerPrev(){if(viewerItems.length){viewerIndex=(viewerIndex-1+viewerItems.length)%viewerItems.length;updateViewer()}}
+
+/* Routine */
+function showRoutine(level){document.querySelectorAll('.routine-buttons button').forEach(btn=>btn.classList.toggle('active',btn.textContent.trim()===level));routineContent.textContent=level==="Junior"?juniorRoutine:seniorRoutine}
+
+
+demoForm.onsubmit=e=>{e.preventDefault();if(!demoLevel.value){alert("Please select Junior or Senior.");return}const text=["Free Demo Class Enquiry","","Student Name: "+demoStudent.value.trim(),"Student Mobile: "+demoMobile.value.trim(),"Student Email: "+demoEmail.value.trim(),"Level: "+demoLevel.value,"Guardian Name: "+guardianName.value.trim(),"Guardian Mobile: "+guardianMobile.value.trim(),"Message: "+demoMessage.value.trim()].join("\n");const wa="https://wa.me/"+String(DEMO_WA).replace(/[^0-9]/g,"")+"?text="+encodeURIComponent(text);window.open(wa,"_blank","noopener,noreferrer");demoForm.reset();demoLevel.value="";document.querySelectorAll(".level-btn").forEach(x=>x.classList.remove("active"))}
+
+/* Admission → Email */
+admissionForm.onsubmit=e=>{e.preventDefault();const studentName=name.value.trim();const studentPhone=phone.value.trim();const selectedCourse=course.value;const studentMessage=message.value.trim();const recipient=(document.getElementById("emailText")?.textContent||"spokenenglishambition@gmail.com").trim();const subject="Admission Enquiry - "+studentName;const body=["Dear Ambition Coaching Centre,","","Admission Enquiry","","Student Name: "+studentName,"Phone Number: "+studentPhone,"Course: "+selectedCourse,"Message: "+(studentMessage||"N/A"),"","Thank you."].join("\n");window.location.href="mailto:"+encodeURIComponent(recipient)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);admissionForm.reset()}
+
+/* Address → Google Maps */
+function openAddressMap(){const address=(document.getElementById("addressText")?.textContent||"Amta (Kolatala) Howrah, West Bengal").trim();const url="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(address);window.open(url,"_blank","noopener,noreferrer")}
+mapLink.onclick=e=>{e.preventDefault();openAddressMap()}
+
+/* Admin */
+const ADMIN_EMAIL="spokenenglishambition@gmail.com";
+
+function openAdmin(){
+  showModal("adminOverlay");
+  checkAdmin();
+}
+
+function closeAdmin(){
+  closeModal("adminOverlay");
+}
+
+async function checkAdmin(){
+  if(!sb){
+    loginStatus.textContent="Supabase is not configured.";
+    return;
+  }
+
+  const {data:{session}}=await sb.auth.getSession();
+
+  if(session && session.user.email===ADMIN_EMAIL){
+    adminLoginBox.classList.add("hidden");
+    adminDashboard.classList.remove("hidden");
+    await loadAdmin();
+  }else{
+    adminLoginBox.classList.remove("hidden");
+    adminDashboard.classList.add("hidden");
+  }
+}
+
+adminLoginForm.onsubmit=async e=>{
+  e.preventDefault();
+
+  if(!sb){
+    loginStatus.textContent="Supabase is not configured.";
+    return;
+  }
+
+  loginStatus.textContent="Signing in...";
+
+  const {data,error}=await sb.auth.signInWithPassword({
+    email:adminEmail.value.trim(),
+    password:adminPassword.value
+  });
+
+  if(error){
+    loginStatus.textContent=error.message;
+    return;
+  }
+
+  if(!data.user || data.user.email!==ADMIN_EMAIL){
+    await sb.auth.signOut();
+    loginStatus.textContent="This account is not authorized as Admin.";
+    return;
+  }
+
+  loginStatus.textContent="";
+
+  adminLoginBox.classList.add("hidden");
+  adminDashboard.classList.remove("hidden");
+
+  await loadAdmin();
+};
+
+async function adminLogout(){
+  await sb.auth.signOut();
+
+  adminDashboard.classList.add("hidden");
+  adminLoginBox.classList.remove("hidden");
+
+  adminEmail.value="";
+  adminPassword.value="";
+  loginStatus.textContent="";
+}
+
+document.querySelectorAll(".admin-tabs [data-tab]").forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll(".admin-tabs button")
+      .forEach(x=>x.classList.remove("active"));
+
+    b.classList.add("active");
+
+    document.querySelectorAll(".admin-panel")
+      .forEach(x=>x.classList.remove("active"));
+
+    document.getElementById(b.dataset.tab).classList.add("active");
+  };
+});
+
+async function ensureDefaultAlbums(){
+ const defaults=[
+   ["Event","Event 1",1],
+   ["Event","Event 2",2],
+   ["Event","Event 3",3],
+   ["Event","Event 4",4],
+   ["Student","Student",1],
+   ["Award","Award",1],
+   ["Teaching","Teaching",1]
+ ];
+
+ for(const [category,name,sort_order] of defaults){
+   const {data,error}=await sb
+     .from("gallery_albums")
+     .select("id")
+     .eq("category",category)
+     .eq("name",name)
+     .limit(1)
+     .maybeSingle();
+
+   if(!data && !error){
+     await sb.from("gallery_albums").insert({
+       category,
+       name,
+       sort_order
+     });
+   }
+ }
+}
+
+async function loadAdmin(){
+ await ensureDefaultAlbums();
+ await Promise.all([loadAdminAlbums(),loadAdminMedia(),loadFacultyAdmin(),loadResultsAdmin(),loadRoutinesAdmin()]);
+ await loadPublic();
+}
+async function upload(file,folder){const path=folder+"/"+Date.now()+"_"+file.name.replace(/\s+/g,"_");const {error}=await sb.storage.from("ambition-gallery").upload(path,file);if(error)throw error;return {path,url:sb.storage.from("ambition-gallery").getPublicUrl(path).data.publicUrl}}
+
+mediaForm.onsubmit=async e=>{e.preventDefault();const file=mediaFile.files[0],aid=mediaAlbum.value;if(!file||!aid)return;mediaStatus.textContent="Uploading...";try{const u=await upload(file,"gallery");const {error}=await sb.from("gallery_media").insert({album_id:aid,file_name:file.name,file_type:file.type,storage_path:u.path,file_url:u.url});if(error)throw error;mediaStatus.textContent="Uploaded successfully.";mediaFile.value="";await loadAdminMedia()}catch(x){mediaStatus.textContent=x.message}}
+
+async function loadAdminAlbums(){
+ const {data,error}=await sb
+   .from("gallery_albums")
+   .select("*")
+   .order("category")
+   .order("sort_order");
+
+ if(error){
+   console.error(error);
+   return;
+ }
+
+ // একই category + name একাধিকবার থাকলে শুধু প্রথমটি দেখাবে
+ const uniqueAlbums=[];
+ const seen=new Set();
+
+ for(const x of (data||[])){
+   const key=`${x.category}|||${x.name}`;
+
+   if(!seen.has(key)){
+     seen.add(key);
+     uniqueAlbums.push(x);
+   }
+ }
+
+ allAlbums=uniqueAlbums;
+
+ mediaAlbum.innerHTML=allAlbums
+   .map(x=>`<option value="${x.id}">${esc(x.category)} — ${esc(x.name)}</option>`)
+   .join("");
+
+ adminAlbums.innerHTML=allAlbums
+   .map(x=>`<div class="admin-list-item">
+     <b>${esc(x.category)} — ${esc(x.name)}</b><br>
+     <button class="small-btn blue" onclick="editAlbum('${x.id}')">Edit</button>
+     <button class="small-btn danger" onclick="deleteAlbum('${x.id}')">Delete Album</button>
+   </div>`)
+   .join("");
+}
+async function editAlbum(id){const a=allAlbums.find(x=>x.id===id);if(!a)return;albumId.value=a.id;albumCategory.value=a.category;albumName.value=a.name}
+async function deleteAlbum(id){if(!confirm("Delete album and its media?"))return;await sb.from("gallery_media").delete().eq("album_id",id);await sb.from("gallery_albums").delete().eq("id",id);await loadAdminAlbums();await loadAdminMedia();await loadPublic()}
+async function loadAdminMedia(){const {data}=await sb.from("gallery_media").select("*,gallery_albums(name,category)").order("created_at",{ascending:false});adminMedia.innerHTML=(data||[]).map(x=>`<div class="admin-list-item"><b>${esc(x.gallery_albums?.category)} — ${esc(x.gallery_albums?.name)}</b><br>${esc(x.file_name)}<br><button class="small-btn blue" onclick="window.open('${esc(x.file_url)}','_blank')">View</button><button class="small-btn danger" onclick="deleteMedia('${x.id}')">Delete</button></div>`).join("")}
+async function deleteMedia(id){if(!confirm("Delete this media?"))return;await sb.from("gallery_media").delete().eq("id",id);await loadAdminMedia();await loadPublic()}
+
+/* Faculty */
+facultyForm.onsubmit = async e => {
+    e.preventDefault();
+
+    let p = null;
+
+    if (facultyPhoto.files[0]) {
+        p = (await upload(facultyPhoto.files[0], "faculty")).url;
+    }
+
+    const row = {
+        name: facultyName.value,
+        subject: facultySubject.value,
+        bio: document.getElementById("facultyBio").value,
+        facebook: facultyFacebook.value,
+        instagram: facultyInstagram.value
+    };
+
+    if (p) row.photo_url = p;
+
+    const r = facultyId.value
+        ? await sb.from("faculty").update(row).eq("id", facultyId.value)
+        : await sb.from("faculty").insert(row);
+
+    if (r.error) return alert(r.error.message);
+
+    e.target.reset();
+    facultyId.value = "";
+
+    await loadFacultyAdmin();
+    await loadPublic();
+};
+
+async function loadFacultyAdmin(){const {data}=await sb.from("faculty").select("*").order("created_at");adminFacultyList.innerHTML=(data||[]).map(x=>`<div class="admin-list-item"><b>${esc(x.name)}</b> — ${esc(x.subject)}<br><button class="small-btn blue" onclick="editFaculty('${x.id}')">Edit</button><button class="small-btn danger" onclick="deleteFaculty('${x.id}')">Delete</button></div>`).join("")}
+async function editFaculty(id){const {data}=await sb.from("faculty").select("*").eq("id",id).single();facultyId.value=data.id;facultyName.value=data.name;facultySubject.value=data.subject;facultyFacebook.value=data.facebook||"";facultyInstagram.value=data.instagram||""}
+async function deleteFaculty(id){if(confirm("Delete faculty?")){await sb.from("faculty").delete().eq("id",id);await loadFacultyAdmin();await loadPublic()}}
+
+/* Results */
+resultForm.onsubmit=async e=>{e.preventDefault();let p=null;if(resultPhoto.files[0])p=(await upload(resultPhoto.files[0],"results")).url;const row={title:resultTitle.value,value:resultValue.value,label:resultLabel.value};if(p)row.photo_url=p;const r=resultId.value?await sb.from("results").update(row).eq("id",resultId.value):await sb.from("results").insert(row);if(r.error)return alert(r.error.message);e.target.reset();resultId.value="";await loadResultsAdmin();await loadPublic()}
+async function loadResultsAdmin(){const {data}=await sb.from("results").select("*").order("created_at");adminResultList.innerHTML=(data||[]).map(x=>`<div class="admin-list-item"><b>${esc(x.title)}</b> — ${esc(x.value)} — ${esc(x.label)}<br><button class="small-btn blue" onclick="editResult('${x.id}')">Edit</button><button class="small-btn danger" onclick="deleteResult('${x.id}')">Delete</button></div>`).join("")}
+async function editResult(id){const {data}=await sb.from("results").select("*").eq("id",id).single();resultId.value=data.id;resultTitle.value=data.title;resultValue.value=data.value;resultLabel.value=data.label}
+async function deleteResult(id){if(confirm("Delete result?")){await sb.from("results").delete().eq("id",id);await loadResultsAdmin();await loadPublic()}}
+
+/* Routine text only */
+async function loadRoutinesAdmin(){const {data}=await sb.from("routine").select("*");const juniorEl=document.getElementById("juniorRoutine"), seniorEl=document.getElementById("seniorRoutine");(data||[]).forEach(x=>{if(x.level==="Junior"){juniorRoutine=x.content||"";if(juniorEl)juniorEl.value=juniorRoutine}if(x.level==="Senior"){seniorRoutine=x.content||"";if(seniorEl)seniorEl.value=seniorRoutine}})}
+async function saveRoutine(level){const el=document.getElementById(level==="Junior"?"juniorRoutine":"seniorRoutine");const content=el?el.value:"";const {data:o}=await sb.from("routine").select("id").eq("level",level).maybeSingle();const r=o?await sb.from("routine").update({content}).eq("id",o.id):await sb.from("routine").insert({level,content});if(r.error)return alert(r.error.message);await loadPublic();alert(level+" routine saved.")}
+
+/* Mobile + keyboard */
+menuBtn.onclick=()=>navbar.classList.toggle("active");
+document.querySelectorAll("#navbar a").forEach(a=>a.onclick=()=>navbar.classList.remove("active"));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal("albumModal");closeModal("mediaModal");closeModal("viewer");closeAdmin()}if(document.getElementById("viewer").classList.contains("active")){if(e.key==="ArrowRight")viewerNext();if(e.key==="ArrowLeft")viewerPrev()}});
+loadPublic();
+/* =========================================================
+   JAVASCRIPT END
+   ========================================================= */
+</script>
+</body>
+</html>
