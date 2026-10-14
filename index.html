@@ -2175,7 +2175,7 @@ Every confident communicator begins somewhere. Whether you are a beginner, a sch
 Explore our courses, select your preferred class schedule and contact us to learn more about admission.
 
 Take the first step towards speaking with greater confidence.</p><div class="contact-info"><p><i class="fa-solid fa-phone"></i><a id="phoneLink" href="tel:+919748910191"><span id="phoneText">+91 9748910191</span></a></p><p><i class="fa-solid fa-envelope"></i><a id="emailLink" href="mailto:spokenenglishambition@gmail.com"><span id="emailText">spokenenglishambition@gmail.com</span></a></p></div></div>
-<form id="admissionForm"><input id="name" placeholder="Student Name" required><input id="phone" type="tel" placeholder="Phone Number" required><select id="course" required><option value="">Select Course</option><option>Class 5 - 8</option><option>Class 9 - 12</option><option>Class Others</option></select><textarea id="message" placeholder="Your Message" rows="4"></textarea><button class="btn primary">Submit Enquiry <i class="fa-solid fa-envelope"></i></button><p class="note">Clicking submit will open your email app with the admission details filled in.</p></form></div></div></section>
+<form id="admissionForm"><input id="name" placeholder="Student Name" required><input id="phone" type="tel" placeholder="Phone Number" required><select id="course" required><option value="">Select Course</option><option>Class 5 - 8</option><option>Class 9 - 12</option><option>Class Others</option></select><textarea id="message" placeholder="Your Message" rows="4"></textarea><button type="submit" class="btn primary">Submit Enquiry <i class="fa-solid fa-envelope"></i></button><p class="note">Clicking submit will open your email app with the admission details filled in.</p></form></div></div></section>
 
 <section class="section" id="contact">
 <div class="container">
@@ -2673,7 +2673,40 @@ function showRoutine(level){document.querySelectorAll('.routine-buttons button')
 demoForm.onsubmit=e=>{e.preventDefault();if(!demoLevel.value){alert("Please select Junior or Senior.");return}const text=["Free Demo Class Enquiry","","Student Name: "+demoStudent.value.trim(),"Student Mobile: "+demoMobile.value.trim(),"Student Email: "+demoEmail.value.trim(),"Level: "+demoLevel.value,"Guardian Name: "+guardianName.value.trim(),"Guardian Mobile: "+guardianMobile.value.trim(),"Message: "+demoMessage.value.trim()].join("\n");const wa="https://wa.me/"+String(DEMO_WA).replace(/[^0-9]/g,"")+"?text="+encodeURIComponent(text);window.open(wa,"_blank","noopener,noreferrer");demoForm.reset();demoLevel.value="";document.querySelectorAll(".level-btn").forEach(x=>x.classList.remove("active"))}
 
 /* Admission → Email */
-admissionForm.onsubmit=e=>{e.preventDefault();const studentName=name.value.trim();const studentPhone=phone.value.trim();const selectedCourse=course.value;const studentMessage=message.value.trim();const recipient=(document.getElementById("emailText")?.textContent||"spokenenglishambition@gmail.com").trim();const subject="Admission Enquiry - "+studentName;const body=["Dear Ambition Coaching Centre,","","Admission Enquiry","","Student Name: "+studentName,"Phone Number: "+studentPhone,"Course: "+selectedCourse,"Message: "+(studentMessage||"N/A"),"","Thank you."].join("\n");window.location.href="mailto:"+encodeURIComponent(recipient)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);admissionForm.reset()}
+const admissionForm = document.getElementById("admissionForm");
+
+admissionForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const studentName = document.getElementById("name").value.trim();
+  const studentPhone = document.getElementById("phone").value.trim();
+  const selectedCourse = document.getElementById("course").value;
+  const studentMessage = document.getElementById("message").value.trim();
+
+  const recipient =
+    (document.getElementById("emailText")?.textContent || "")
+      .trim() || "spokenenglishambition@gmail.com";
+
+  const subject = "Admission Enquiry - " + studentName;
+
+  const body = [
+    "Dear Ambition Coaching Centre,",
+    "",
+    "Admission Enquiry",
+    "",
+    "Student Name: " + studentName,
+    "Phone Number: " + studentPhone,
+    "Course: " + selectedCourse,
+    "Message: " + (studentMessage || "N/A"),
+    "",
+    "Thank you."
+  ].join("\n");
+
+  window.location.href =
+    "mailto:" + recipient +
+    "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(body);
+});
 
 /* Address → Google Maps */
 function openAddressMap(){const address=(document.getElementById("addressText")?.textContent||"Amta (Kolatala) Howrah, West Bengal").trim();const url="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(address);window.open(url,"_blank","noopener,noreferrer")}
