@@ -1768,7 +1768,130 @@ h3 span {
     border-color: #001F54;
     transform: translateY(-2px);
 }
+/* Popup overlay - centered on screen */
+.course-details-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  padding: 16px;
+  box-sizing: border-box;
+  background: rgba(0, 15, 40, 0.75);
+  align-items: center;
+  justify-content: center;
+}
 
+.course-details-modal.is-open {
+  display: flex;
+}
+
+/* Popup box */
+.course-details-box {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 28px 24px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+
+  background: #ffffff;
+  color: #263449;
+  border: 1px solid #DCE3ED;
+  border-radius: 18px;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.3);
+}
+
+/* Course headings */
+.course-details-box h2 {
+  margin: 0 45px 18px 0;
+  color: #0B2D5C;
+  font-size: 24px;
+}
+
+.course-details-box h3 {
+  margin: 20px 0 8px;
+  color: #174A85;
+  font-size: 18px;
+}
+
+.course-details-box p,
+.course-details-box li {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* Close button - no yellow */
+.course-details-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 5;
+  width: 38px;
+  height: 38px;
+  margin: -8px -8px 0 8px;
+  background: #edf2f8;
+  color: #0B2D5C;
+  border: 1px solid #DCE3ED;
+  border-radius: 50%;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* View Course Details - Navy Blue only */
+.view-course-details {
+  display: block;
+  width: 100%;
+  margin: 0 0 14px;
+  padding: 15px 20px;
+  background: #0B2D5C;
+  color: #FFFFFF;
+  border: 1px solid #0B2D5C;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(11, 45, 92, 0.18);
+  transition: background 0.25s ease;
+}
+
+.view-course-details:hover {
+  background: #174A85;
+  color: #FFFFFF;
+  border-color: #174A85;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .course-details-modal {
+    padding: 12px;
+  }
+
+  .course-details-box {
+    max-height: calc(100vh - 24px);
+    max-height: calc(100dvh - 24px);
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
+
+  .course-details-box h2 {
+    font-size: 21px;
+  }
+
+  .course-details-box h3 {
+    font-size: 17px;
+  }
+
+  .course-details-box p,
+  .course-details-box li {
+    font-size: 14px;
+  }
+}
 
 /* =========================================================
    CSS END
@@ -1911,31 +2034,46 @@ To become a trusted and respected institution for English communication, persona
 <div class="course-grid">
 
 <div class="course-card">
-<img src="course1.jpg" class="course-image" alt="Class 5 - 8">
+<img src="course1.jpg" class="course-image" alt="Foundation">
 <div class="course-content">
-<span>CLASS 5 - 8</span>
+<span>FOUNDATION</span>
 <h3>Core English</h3>
-<p>Build strong fundamentals in English.</p>
+<p>Build your basics with simple vocabulary, short sentences and the courage to introduce yourself in English.</p>
+   <button type="button"
+  class="view-course-details"
+  onclick="openCourseDetails('core-english')">
+  View Course Details
+</button>
 <a href="#admission">Enquire Now →</a>
 </div>
 </div>
 
 <div class="course-card">
-<img src="course2.jpg" class="course-image" alt="Class 9 - 12">
+<img src="course2.jpg" class="course-image" alt="Skill Building">
 <div class="course-content">
-<span>CLASS 9 - 12</span>
+<span>SKILL BUILDING</span>
 <h3>Basic and Advance English</h3>
-<p>Complete academic preparation with regular examinations and revision.</p>
+<p>Build essential skills, boost your confidence and gain practical knowledge to prepare for future opportunities.</p>
+   <button type="button"
+  class="view-course-details"
+  onclick="openCourseDetails('basic-advanced-english')">
+  View Course Details
+</button>
 <a href="#admission">Enquire Now →</a>
 </div>
 </div>
 
 <div class="course-card">
-<img src="course3.jpg" class="course-image" alt="Class Others">
+<img src="course3.jpg" class="course-image" alt="Advanced">
 <div class="course-content">
-<span>CLASS OTHERS</span>
+<span>ADVANCED</span>
 <h3>Advance Level English</h3>
-<p>Advanced preparation for board examinations and competitive exams.</p>
+<p>Refine your fluency, learn advanced grammar and get ready for professional, academic and global opportunities.</p>
+   <button type="button"
+  class="view-course-details"
+  onclick="openCourseDetails('advanced-level-english')">
+  View Course Details 
+</button>
 <a href="#admission">Enquire Now →</a>
 </div>
 </div>
@@ -2173,7 +2311,7 @@ Every confident communicator begins somewhere. Whether you are a beginner, a sch
 Explore our courses, select your preferred class schedule and contact us to learn more about admission.
 
 Take the first step towards speaking with greater confidence.</p><div class="contact-info"><p><i class="fa-solid fa-phone"></i><a id="phoneLink" href="tel:+919748910191"><span id="phoneText">+91 9748910191</span></a></p><p><i class="fa-solid fa-envelope"></i><a id="emailLink" href="mailto:spokenenglishambition@gmail.com"><span id="emailText">spokenenglishambition@gmail.com</span></a></p></div></div>
-<form id="admissionForm"><input id="name" placeholder="Student Name" required><input id="phone" type="tel" placeholder="Phone Number" required><select id="course" required><option value="">Select Course</option><option>Class 5 - 8</option><option>Class 9 - 12</option><option>Class Others</option></select><textarea id="message" placeholder="Enter your address and message here..." rows="4"></textarea><button type="submit" class="btn primary">Submit Enquiry <i class="fa-solid fa-envelope"></i></button><p class="note">Clicking submit will open your email app with the admission details filled in.</p></form></div></div></section>
+<form id="admissionForm"><input id="name" placeholder="Student Name" required><input id="phone" type="tel" placeholder="Phone Number" required><select id="course" required><option value="">Select Course</option><option>Foundation</option><option>Skill Building</option><option>Advanced</option></select><textarea id="message" placeholder="Enter your address and message here..." rows="4"></textarea><button type="submit" class="btn primary">Submit Enquiry <i class="fa-solid fa-envelope"></i></button><p class="note">Clicking submit will open your email app with the admission details filled in.</p></form></div></div></section>
 
 <section class="section" id="contact">
 <div class="container">
@@ -2335,6 +2473,31 @@ Take the first step towards speaking with greater confidence.</p><div class="con
 
 
 </div></div></div></div>
+<!-- Course Details Popup -->
+<div
+  id="courseDetailsModal"
+  class="course-details-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="courseDetailsTitle"
+  aria-hidden="true">
+
+  <div class="course-details-box">
+
+    <button
+      type="button"
+      class="course-details-close"
+      aria-label="Close course details"
+      onclick="closeCourseDetails()">
+      &times;
+    </button>
+
+    <h2 id="courseDetailsTitle">Course Details</h2>
+
+    <div id="courseDetailsContent"></div>
+
+  </div>
+</div>
 
 <script>
 /* =========================================================
@@ -2934,6 +3097,157 @@ menuBtn.onclick=()=>navbar.classList.toggle("active");
 document.querySelectorAll("#navbar a").forEach(a=>a.onclick=()=>navbar.classList.remove("active"));
 document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal("albumModal");closeModal("mediaModal");closeModal("viewer");closeAdmin()}if(document.getElementById("viewer").classList.contains("active")){if(e.key==="ArrowRight")viewerNext();if(e.key==="ArrowLeft")viewerPrev()}});
 loadPublic();
+
+   /* ===== COURSE DETAILS DATA ===== */
+
+const courseDetailsData = {
+  "core-english": {
+    title: "Core English",
+    content: `
+      <h3>Course Overview</h3>
+      <p>Build strong fundamentals in English and develop confidence in everyday communication.</p>
+
+      <h3>Grammar Focus</h3>
+      <ul>
+        <li>Parts of Speech</li>
+        <li>Nouns, Pronouns and Verbs</li>
+        <li>Adjectives and Adverbs</li>
+        <li>Articles and Prepositions</li>
+        <li>Singular and Plural</li>
+        <li>Basic Sentence Structure</li>
+        <li>Simple Present, Past and Future Tenses</li>
+      </ul>
+
+      <h3>Communication & Public Speaking</h3>
+      <ul>
+        <li>Self-Introduction</li>
+        <li>Daily Conversation Practice</li>
+        <li>Question and Answer Practice</li>
+        <li>Listening and Speaking Activities</li>
+        <li>Confidence-Building Activities</li>
+      </ul>
+    `
+  },
+
+  "basic-advanced-english": {
+    title: "Basic & Advanced English",
+    content: `
+      <h3>Course Overview</h3>
+      <p>Improve your English step by step, from basic grammar to advanced sentence structures.</p>
+
+      <h3>Grammar Focus</h3>
+      <ul>
+        <li>English Tenses</li>
+        <li>WH-Questions and Modal Verbs</li>
+        <li>Subject-Verb Agreement</li>
+        <li>Countable and Uncountable Nouns</li>
+        <li>Conjunctions and Prepositions</li>
+        <li>Active and Passive Voice</li>
+        <li>Direct and Indirect Speech</li>
+        <li>Conditionals and Relative Clauses</li>
+      </ul>
+
+      <h3>Communication & Public Speaking</h3>
+      <ul>
+        <li>Daily Conversations</li>
+        <li>Asking for Information</li>
+        <li>Describing People and Places</li>
+        <li>Role-Play and Pair Activities</li>
+        <li>Storytelling and Expressing Opinions</li>
+        <li>Group Discussion Practice</li>
+      </ul>
+    `
+  },
+
+  "advanced-level-english": {
+    title: "Advanced Level English",
+    content: `
+      <h3>Course Overview</h3>
+      <p>Develop advanced English fluency and confidence for professional and academic communication.</p>
+
+      <h3>Advanced Grammar Focus</h3>
+      <ul>
+        <li>Advanced Tense Usage</li>
+        <li>Advanced Sentence Structures</li>
+        <li>Active and Passive Voice</li>
+        <li>Direct and Indirect Speech</li>
+        <li>Transformation of Sentences</li>
+        <li>Degrees of Comparison</li>
+        <li>Advanced Conditionals</li>
+        <li>Relative Clauses and Participles</li>
+        <li>Advanced Vocabulary</li>
+        <li>Error Correction</li>
+      </ul>
+
+      <h3>Communication & Public Speaking</h3>
+      <ul>
+        <li>Public Speaking and Presentations</li>
+        <li>Debates and Group Discussions</li>
+        <li>Interview Preparation</li>
+        <li>Professional Communication</li>
+        <li>Impromptu and Persuasive Speaking</li>
+      </ul>
+    `
+  }
+};
+
+
+/* ===== OPEN COURSE DETAILS ===== */
+
+function openCourseDetails(courseId) {
+  const course = courseDetailsData[courseId];
+  const modal = document.getElementById("courseDetailsModal");
+
+  if (!course || !modal) return;
+
+  document.getElementById("courseDetailsTitle").textContent =
+    course.title;
+
+  document.getElementById("courseDetailsContent").innerHTML =
+    course.content;
+
+  modal.classList.add("is-open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+
+/* ===== CLOSE COURSE DETAILS ===== */
+
+function closeCourseDetails() {
+  const modal = document.getElementById("courseDetailsModal");
+
+  if (!modal) return;
+
+  modal.classList.remove("is-open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+
+/* ===== CLICK OUTSIDE TO CLOSE ===== */
+
+document.getElementById("courseDetailsModal")
+  .addEventListener("click", function(event) {
+    if (event.target === this) {
+      closeCourseDetails();
+    }
+  });
+
+
+/* ===== ESCAPE KEY TO CLOSE ===== */
+
+document.addEventListener("keydown", function(event) {
+  const modal = document.getElementById("courseDetailsModal");
+
+  if (
+    event.key === "Escape" &&
+    modal &&
+    modal.classList.contains("is-open")
+  ) {
+    closeCourseDetails();
+  }
+});
 /* =========================================================
    JAVASCRIPT END
    ========================================================= */
