@@ -1891,7 +1891,280 @@ h3 span {
     font-size: 14px;
   }
 }
+/* Our Branches Button */
+.our-branches-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 13px;
+    background: #4169E1;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 8px;
+}
 
+.our-branches-btn:hover,
+.branch-btn:hover {
+    background: #142747;
+}
+
+/* Main Section */
+.our-branches-section {
+    display: none;
+    position: relative;
+    max-width: 1100px;
+    margin: 25px auto;
+    padding: 30px 20px;
+    background: #f8faff;
+    border: 2px solid #4169E1;
+    border-radius: 18px;
+    color: #273752;
+    font-family: Arial, sans-serif;
+    scroll-margin-top: 20px;
+    box-sizing: border-box;
+}
+
+.our-branches-section.is-open {
+    display: block;
+}
+
+.close-branches {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #4169E1;
+    border-radius: 50%;
+    background: #eaf0ff;
+    color: #142747;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.branches-heading {
+    text-align: center;
+    margin: 0 auto 28px;
+}
+
+.branches-label {
+    color: #4169E1;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.branches-heading h2 {
+    margin: 12px 0;
+    color: #142747;
+    font-size: 34px;
+}
+
+.branches-heading h2 span {
+    color: #4169E1;
+}
+
+.branches-heading p {
+    color: #68758a;
+    line-height: 1.6;
+}
+
+/* Three Branch Cards */
+.branches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.branch-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px;
+    background: #fff;
+    border: 2px solid #4169E1;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(20, 39, 71, 0.08);
+    box-sizing: border-box;
+}
+
+.branch-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 12px;
+    background: #eaf0ff;
+    color: #4169E1;
+    border: 1px solid #9bb4ff;
+    border-radius: 50%;
+    font-size: 26px;
+}
+
+.branch-card h3,
+.branch-details h3 {
+    color: #142747;
+    font-size: 20px;
+    margin: 5px 0 10px;
+}
+
+.branch-card p {
+    flex: 1;
+    color: #68758a;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.branch-btn {
+    display: inline-block;
+    padding: 11px 15px;
+    background: #4169E1;
+    color: #fff;
+    border: 1px solid #4169E1;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.branch-btn:hover {
+    background: #142747;
+    border-color: #142747;
+}
+
+/* Branch Details */
+.branch-details {
+    display: none;
+    margin-top: 25px;
+    padding: 22px;
+    background: #fff;
+    border: 2px solid #4169E1;
+    border-radius: 14px;
+    scroll-margin-top: 20px;
+    box-sizing: border-box;
+}
+
+.branch-details.active {
+    display: block;
+}
+
+.branch-info {
+    padding: 17px;
+    border: 2px solid #9bb4ff;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.branch-info h4 {
+    color: #142747;
+    margin: 0 0 10px;
+}
+
+.branch-info p {
+    line-height: 1.6;
+}
+
+.coming-soon {
+    color: #4169E1;
+    font-weight: 700;
+}
+
+/* Suggestion Form */
+.branch-details form {
+    display: grid;
+    gap: 10px;
+    max-width: 600px;
+}
+
+.branch-details label {
+    color: #142747;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.branch-details input,
+.branch-details textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 2px solid #cbd9ff;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.branch-details textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.branch-details input:focus,
+.branch-details textarea:focus {
+    outline: 2px solid #dce6ff;
+    border-color: #4169E1;
+}
+
+#branchFormMessage {
+    color: #2457b8;
+    font-size: 13px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 760px) {
+    .our-branches-section {
+        margin: 15px 0;
+        padding: 25px 14px;
+    }
+
+    .branches-heading h2 {
+        font-size: 29px;
+    }
+
+    .branches-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .branch-card {
+        padding: 18px;
+    }
+
+    .branch-details {
+        padding: 16px;
+    }
+}
+
+/* Soft, Light Map Background */
+#suggestLocation {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+#suggestLocation::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("branch-background.jpg") center / cover no-repeat;
+    filter: blur(7px);
+    opacity: 0.35;
+    z-index: -1;
+}
+
+@media (max-width: 760px) {
+    #suggestLocation {
+        padding: 15px;
+    }
+
+    #suggestLocation form {
+        width: 100%;
+        max-width: 100%;
+    }
+}
 /* =========================================================
    CSS END
    ========================================================= */
@@ -2311,7 +2584,103 @@ Explore our courses, select your preferred class schedule and contact us to lear
 
 Take the first step towards speaking with greater confidence.</p><div class="contact-info"><p><i class="fa-solid fa-phone"></i><a id="phoneLink" href="tel:+919748910191"><span id="phoneText">+91 9748910191</span></a></p><p><i class="fa-solid fa-envelope"></i><a id="emailLink" href="mailto:spokenenglishambition@gmail.com"><span id="emailText">spokenenglishambition@gmail.com</span></a></p></div></div>
 <form id="admissionForm"><input id="name" placeholder="Student Name" required><input id="phone" type="tel" placeholder="Phone Number" required><select id="course" required><option value="">Select Course</option><option>Foundation Level</option><option>Intermediate Level</option><option>Advanced Level</option></select><textarea id="message" placeholder="Enter your address and message here..." rows="4"></textarea><button type="submit" class="btn primary">Submit Enquiry <i class="fa-solid fa-envelope"></i></button><p class="note">Clicking submit will open your email app with the admission details filled in.</p></form></div></div></section>
+<!-- Our Branches Section -->
+<section id="ourBranches" class="our-branches-section">
+    <button class="close-branches" onclick="closeBranches()"
+            aria-label="Close">&times;</button>
 
+    <div class="branches-heading">
+        <span class="branches-label">OUR LOCATIONS</span>
+        <h2>Our <span>Branches</span></h2>
+        <p>Find a branch or suggest a new location.</p>
+    </div>
+
+    <div class="branches-grid">
+
+        <article class="branch-card">
+            <div class="branch-icon">⌖</div>
+            <h3>Existing Branches</h3>
+            <p>Explore our current branches and find directions.</p>
+            <button class="branch-btn"
+                    onclick="showBranchSection('existingBranches')">
+                View Branches →
+            </button>
+        </article>
+
+        <article class="branch-card">
+            <div class="branch-icon">▦</div>
+            <h3>Upcoming Branches</h3>
+            <p>Discover locations planned for future expansion.</p>
+            <button class="branch-btn"
+                    onclick="showBranchSection('upcomingBranches')">
+                Explore Upcoming →
+            </button>
+        </article>
+
+        <article class="branch-card">
+            <div class="branch-icon">⌖</div>
+            <h3>Suggest a New Location</h3>
+            <p>Tell us where you would like our next branch.</p>
+            <button class="branch-btn"
+                    onclick="showBranchSection('suggestLocation')">
+                Suggest Location →
+            </button>
+        </article>
+
+    </div>
+
+    <div id="existingBranches" class="branch-details">
+        <h3>Existing Branches</h3>
+        <div class="branch-info">
+            <h4>Ambition Spoken English</h4>
+            <p>Amta (Kolatala), Howrah, West Bengal</p>
+            <a class="branch-btn map-btn"
+               href="https://www.google.com/maps/search/?api=1&query=Amta%20Kolatala%20Howrah%20West%20Bengal"
+               target="_blank" rel="noopener">
+                Get Directions ↗️
+            </a>
+        </div>
+    </div>
+
+    <div id="upcomingBranches" class="branch-details">
+        <h3>Upcoming Branches</h3>
+        <div class="branch-info">
+            <h4>New Branch</h4>
+            <p class="coming-soon">Coming Soon</p>
+            <p>Location and opening date will be announced soon.</p>
+        </div>
+    </div>
+
+    <div id="suggestLocation" class="branch-details">
+        <h3>Suggest a New Location</h3>
+        <p>Share your suggestion with us.</p>
+
+        <form id="branchSuggestionForm">
+            <label for="branchName">Your Name *</label>
+            <input id="branchName" name="name"
+                   placeholder="Enter your name" required>
+
+            <label for="branchPhone">Phone Number *</label>
+            <input id="branchPhone" name="phone" type="tel"
+                   placeholder="Enter phone number" required>
+
+            <label for="branchLocation">Suggested Location *</label>
+            <input id="branchLocation" name="location"
+                   placeholder="City / Area" required>
+
+            <label for="branchMessage">Message (Optional)</label>
+            <textarea id="branchMessage" name="message"
+                      placeholder="Your message"></textarea>
+
+            <button type="submit" class="branch-btn">
+                Submit Suggestion →
+            </button>
+            <p id="branchFormMessage" role="status"></p>
+        </form>
+    </div>
+</section>
+
+   
 <section class="section" id="contact">
 <div class="container">
 
@@ -2322,18 +2691,31 @@ Take the first step towards speaking with greater confidence.</p><div class="con
 
 <div class="contact-grid">
 
-<a id="mapLink" class="contact-card" target="_blank">
+<div id="mapLink" class="contact-card">
+
     <div class="contact-image">
-        <img src="contact-address.jpg" alt="Address">
+        <img src="image/contact-address.jpg" alt="Address">
     </div>
+
     <div class="contact-content">
         <div class="contact-icon">
             <i class="fa-solid fa-location-dot"></i>
         </div>
+
         <h3>Address</h3>
-        <p id="addressText">Amta (Kolatala) Howrah, West Bengal</p>
+        <p id="addressText">
+            Amta (Kolatala) Howrah, West Bengal
+        </p>
+
+        <button type="button"
+                class="our-branches-btn"
+                onclick="openBranches()">
+            <i class="fa-solid fa-code-branch"></i>
+            Our Branches
+        </button>
     </div>
-</a>
+
+</div>
 
 <a id="contactPhoneLink" class="contact-card" href="tel:+919748910191">
     <div class="contact-image">
@@ -2869,8 +3251,7 @@ admissionForm.addEventListener("submit", function (e) {
 });
 
 /* Address → Google Maps */
-function openAddressMap(){const address=(document.getElementById("addressText")?.textContent||"Amta (Kolatala) Howrah, West Bengal").trim();const url="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(address);window.open(url,"_blank","noopener,noreferrer")}
-mapLink.onclick=e=>{e.preventDefault();openAddressMap()}
+
 
 /* Admin */
 const ADMIN_EMAIL="spokenenglishambition@gmail.com";
@@ -3247,6 +3628,65 @@ document.addEventListener("keydown", function(event) {
     closeCourseDetails();
   }
 });
+   function openBranches() {
+    const section = document.getElementById("ourBranches");
+    section.classList.add("is-open");
+    section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function closeBranches() {
+    document.getElementById("ourBranches")
+        .classList.remove("is-open");
+}
+
+function showBranchSection(sectionId) {
+    document.querySelectorAll("#ourBranches .branch-details")
+        .forEach(section => section.classList.remove("active"));
+
+    const target = document.getElementById(sectionId);
+
+    if (target) {
+        target.classList.add("active");
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
+
+document.getElementById("branchSuggestionForm")
+    .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        if (!this.checkValidity()) {
+            this.reportValidity();
+            return;
+        }
+
+        const name = document.getElementById("branchName").value.trim();
+        const phone = document.getElementById("branchPhone").value.trim();
+        const location = document.getElementById("branchLocation").value.trim();
+        const message = document.getElementById("branchMessage").value.trim();
+
+        const whatsappNumber = "919748910191";
+
+        const whatsappMessage =
+            "New Branch Location Suggestion\n\n" +
+            "Name: " + name + "\n" +
+            "Phone: " + phone + "\n" +
+            "Suggested Location: " + location + "\n" +
+            "Message: " + (message || "Not provided");
+
+        const whatsappURL =
+            "https://wa.me/" + whatsappNumber +
+            "?text=" + encodeURIComponent(whatsappMessage);
+
+        window.open(whatsappURL, "_blank");
+    });
+
 /* =========================================================
    JAVASCRIPT END
    ========================================================= */
